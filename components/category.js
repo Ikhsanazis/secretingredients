@@ -1,11 +1,8 @@
 import React from "react";
 import axios from "axios";
 import style from "../styles/Home.module.css";
-import Link from "next/link";
-import { AiFillStar } from "react-icons/ai";
 
-
-function Fixedmenu() {
+function Category() {
   const [data, setData] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState([]);
 
@@ -64,4 +61,4 @@ function Fixedmenu() {
     </>
   );
 }
-export default Fixedmenu;
+export default Category;
