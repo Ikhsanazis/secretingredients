@@ -2,11 +2,8 @@ import React from "react";
 import style from "../styles/Login.module.css";
 import Link from "next/link";
 import axios from "axios";
-// import * as Type from "../redux/auth/type";
 
 function Register() {
-  //   const dispatch = useDispatch();
-  //   const router = useRouter();
   const [username, setUsername] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -79,8 +76,6 @@ function Register() {
                 </div>
               </div>
             )}
-
-            {/* Login Form */}
             <div>
               <form
                 onSubmit={(e) => {
@@ -91,7 +86,7 @@ function Register() {
                 {/* Username Input */}
                 <div className="mb-3">
                   <label htmlFor="email" className="form-label">
-                    E-mail
+                    Username
                   </label>
                   <div className={style.formControl}>
                     <input
@@ -139,17 +134,11 @@ function Register() {
                   </div>
                 </div>
 
-                {/* Forget Password */}
-                {/* <div className="mb-3 form-check">
-                  <p className="text-end">Forget Password ?</p>
-                </div> */}
-
-                {/* Submit Button */}
                 <div className="d-grid ">
                   <button
                     type="submit"
                     className="btn btn-warning btn-lg"
-                    // onClick={handleLogin}
+                    onClick={handleRegister}
                     disabled={isLoading}
                   >
                     {isLoading ? "Loading..." : "Register"}
