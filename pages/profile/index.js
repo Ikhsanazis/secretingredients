@@ -10,8 +10,6 @@ import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { decode } from "jsonwebtoken";
-import * as Type from "../../redux/auth/type";
 // custom component
 import Link from "next/link";
 

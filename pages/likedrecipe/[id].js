@@ -1,12 +1,9 @@
-import Head from "next/head";
 import Image from "next/image";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { FiSearch } from "react-icons/fi";
 import { AiFillStar } from "react-icons/ai";
 import { IoChevronBack } from "react-icons/io5";
-import * as Type from "../../redux/auth/type";
 import { useSelector } from "react-redux";
 import { decode } from "jsonwebtoken";
 import axios from "axios";
@@ -14,7 +11,7 @@ import axios from "axios";
 // custom components
 import Link from "next/link";
 
-export default function Home() {
+export default function likedRecipe() {
   const router = useRouter();
   const dispatch = useDispatch();
   const { auth } = useSelector((state) => state);
@@ -42,7 +39,7 @@ export default function Home() {
         setLoadLiked(false);
       });
   };
-  
+
 console.log(likedRecipe)
   return (
     <div id="home" className="container ">
@@ -108,9 +105,7 @@ console.log(likedRecipe)
               </div>
             </section>
           )}
-          {/* End Of Popular Recipes */}
         </div>
-        {/* </MainLayout> */}
       </div>
     </div>
   );

@@ -8,9 +8,8 @@ import { useSelector } from "react-redux";
 import { decode } from "jsonwebtoken";
 import axios from "axios";
 import Link from "next/link";
-import * as Type from "../../redux/auth/type";
 
-export default function Home() {
+export default function savedRecipe() {
   const router = useRouter();
   const dispatch = useDispatch();
   const { auth } = useSelector((state) => state);

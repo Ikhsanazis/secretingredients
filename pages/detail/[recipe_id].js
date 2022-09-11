@@ -13,7 +13,7 @@ import { decode } from "jsonwebtoken";
 import Link from "next/link";
 import axios from "axios";
 
-export default function Home() {
+export default function Detail() {
   const dispatch = useDispatch();
   const [change, setChange] = React.useState(false);
   const [currentTab, setCurrentTab] = React.useState("first");
