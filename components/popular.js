@@ -7,7 +7,7 @@ import Image from "next/image";
 import ReactPaginate from "react-paginate";
 import { useEffect, useState } from "react";
 
-function Fixedmenu() {
+function Popularmenu() {
   const [data, setData] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState([]);
   const [currentItems, setCurrentItems] = useState(null);
@@ -114,4 +114,4 @@ function Fixedmenu() {
     </>
   );
 }
-export default Fixedmenu;
+export default Popularmenu;
