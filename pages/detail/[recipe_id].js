@@ -129,13 +129,6 @@ export default function Home() {
         <div className="col-lg-4 mx-auto col-sm" key={item?.recipe_id}>
           <div
             className={`${style.container} `}
-            // style={{
-            //   backgroundImage: `url(http://localhost:8000/${item?.image})`,
-            //   backgroundSize: "cover",
-            //   backgroundPosition: "center",
-            //   height: "300px",
-            //   // display: "flex",
-            // }}
           >
             <Image
               className={style.imagebackground}
@@ -156,10 +149,6 @@ export default function Home() {
                 className={`${style.margin} d-flex justify-content-between text-white `}
               >
                 <div className=" ">
-                  {/* <div className={` d-flex  fs-2`}>
-                    <BsBookmark className={`${style.icon} mx-2 bg-warning`} />
-                    <AiOutlineLike className={`${style.icon} bg-warning`} />
-                  </div> */}
                   <h3 className="text-white mx-3">{item?.name}</h3>
                   <small className="mx-3">by {item?.username}</small>
                 </div>
