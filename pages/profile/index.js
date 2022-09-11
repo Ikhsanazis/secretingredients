@@ -18,14 +18,20 @@ import Link from "next/link";
 export default function Profile() {
   const dispatch = useDispatch();
   const router = useRouter();
+  const { auth } = useSelector((state) => state);
+  const username = auth?.profile?.username;
+  const profile = auth?.profile?.image;
+  const profpict = `http://localhost:8000/images/${profile}`;
+  const profdummy = `/image/profil.jpg`;
+
   const handleLogout = () => {
     Swal.fire({
-      title: "Logout",
+      title: "Are You Sure to Logout?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "green",
+      confirmButtonColor: "blue",
       cancelButtonColor: "red",
-      confirmButtonText: "Logout",
+      confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch({ type: Type.REMOVE_AUTH });
@@ -33,6 +39,7 @@ export default function Profile() {
       }
     });
   };
+
   return (
     <div id="home" className="container ">
       <div className="col-lg-4 mx-auto col-sm">
@@ -46,36 +53,37 @@ export default function Profile() {
             </div>
             <div className="d-flex justify-content-center">
               <img
-                className={`${style.profpict} mt-4`}
+                crossOrigin="anonymous"
+                className={`${style.profpict} mt-3 mb-2`}
                 style={{ backgroundSize: "cover" }}
-                src={"/image/profil.jpg"}
+                src={profpict ? profpict : profdummy}
                 alt=""
                 width={100}
                 height={100}
               />
             </div>
-            <h5 className="text-center">Username</h5>
+            <h5 className="text-center">{username}</h5>
           </div>
         </div>
         <div className={`${style.background} mx-3`}>
           <div className={`row justify-content-center `}>
             <Link href="/editprofile/id" passHref>
-              <div className="row mt-4 cursor">
+              <div className="row mt-4 " style={{cursor:"pointer"}}>
                 <div className="col-2 text-center">
                   <div className="">
                     <BsPerson className="fs-3 text-warning" />
                   </div>
                 </div>
                 <div className="col-8 mt-2">
-                  <p className="{profileStyle.titleContent}">Edit Profile</p>
+                  <p className="">Edit Profile</p>
                 </div>
                 <div className={`col-2 `}>
-                  <BsChevronRight />
+                  <BsChevronRight className="mt-1" />
                 </div>
               </div>
             </Link>
             <Link href="/myrecipe/id" passHref>
-              <div className="row mt-4 cursor">
+              <div className="row mt-4 " style={{cursor:"pointer"}}>
                 <div className="col-2 text-center">
                   <div className="">
                     <FiAward className="fs-3 text-warning" />
@@ -85,27 +93,27 @@ export default function Profile() {
                   <p className="">My Recipe</p>
                 </div>
                 <div className={`col-2 `}>
-                  <BsChevronRight />
+                  <BsChevronRight className="mt-1" />
                 </div>
               </div>
             </Link>
             <Link href="/savedrecipe/id" passHref>
-              <div className="row mt-4 cursor">
+              <div className="row mt-4 " style={{cursor:"pointer"}}>
                 <div className="col-2 text-center">
                   <div className="{profileStyle.icon}">
                     <FiBookmark className="fs-3 text-warning" />
                   </div>
                 </div>
                 <div className="col-8 mt-2">
-                  <p className="{profileStyle.titleContent}">Saved Recipe</p>
+                  <p className="">Saved Recipe</p>
                 </div>
                 <div className={`col-2 `}>
-                  <BsChevronRight />
+                  <BsChevronRight className="mt-1" />
                 </div>
               </div>
             </Link>
             <Link href="/likedrecipe/id" passHref>
-              <div className="row mt-4 cursor">
+              <div className="row mt-4 " style={{cursor:"pointer"}}>
                 <div className="col-2 text-center">
                   <div className="">
                     <AiOutlineLike className="fs-3 text-warning" />
@@ -115,7 +123,7 @@ export default function Profile() {
                   <p className="">Liked Recipe</p>
                 </div>
                 <div className={`col-2`}>
-                  <BsChevronRight />
+                  <BsChevronRight className="mt-1" />
                 </div>
               </div>
             </Link>

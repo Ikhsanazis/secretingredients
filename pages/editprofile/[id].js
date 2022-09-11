@@ -1,172 +1,136 @@
 import React from "react";
-import { IoChevronBack } from "react-icons/io5";
+import style from "../../styles/Profile.module.css";
+import Navigation from "../../components/navigation";
+import { BsChevronRight, BsPerson } from "react-icons/bs";
+import { FiBookmark } from "react-icons/fi";
+import { FiAward } from "react-icons/fi";
+import { AiOutlineLike } from "react-icons/ai";
+import { FiLogOut } from "react-icons/fi";
+import Swal from "sweetalert2";
+import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { decode } from "jsonwebtoken";
-import Axios from "axios";
-// import { useRouter } from "next/router";
+import * as Type from "../../redux/auth/type";
+// custom component
+import Link from "next/link";
 
-const EditProfile = () => {
-//   const { auth } = useSelector((state) => state);
-//   const decodeUser = decode(auth?.token);
-//   const id = decodeUser?.id;
-  const [isloading, setIsloading] = React.useState(false);
+export default function Profile() {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const { auth } = useSelector((state) => state);
+  const username = auth?.profile?.username;
+  const profile = auth?.profile?.image;
+  const profpict = `http://localhost:8000/images/${profile}`;
+  const profdummy = `/image/profil.jpg`;
 
-  const [email, setEmail] = React.useState("");
-  const [name, setName] = React.useState("");
-  const [phoneNumber, setPhoneNumber] = React.useState("");
-  const [address, setaAddress] = React.useState("");
-  const [city, setCity] = React.useState("");
-  const [postCode, setPostCode] = React.useState("");
-  const [placeholder, setPlaceholder] = React.useState([]);
-
-//   const router = useRouter();
-
-  React.useEffect(() => {
-    getPlaceholder();
-  }, []);
-  const getPlaceholder = async (req, res) => {
-    await Axios.get(
-      `https://bug-hunter-squad.herokuapp.com/profile/`
-    ).then((res) => {
-      setPlaceholder(res?.data);
+  const handleLogout = () => {
+    Swal.fire({
+      title: "Are You Sure to Logout?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "blue",
+      cancelButtonColor: "red",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch({ type: Type.REMOVE_AUTH });
+        router.replace("/home");
+      }
     });
   };
 
-  const handleUpdate = () => {
-    setIsloading(true);
-    setTimeout(() => {
-      Axios.patch(`https://bug-hunter-squad.herokuapp.com/profile/${id}`, {
-        email: email,
-        name: name,
-        phoneNumber: phoneNumber,
-        country: address,
-        city: city,
-        postCode: postCode,
-      })
-        .then(() => {
-          Swal.fire({
-            title: "Update success",
-            width: 389,
-            icon: "success",
-          });
-          router.push("/profile");
-        })
-        .catch((err) => {
-          const msg = err?.data.message;
-          Swal.fire({
-            title: msg,
-            width: 389,
-            icon: "error",
-          });
-        })
-        .finally(() => {
-          setIsloading(false);
-        });
-    }, 3000);
-  };
-
   return (
-    <>
-      <div className="container p-2 h-100 col-lg-4 mx-auto">
-        <div className="container h-100">
-          <div className="row row-cols-1 p-2">
-            <div className="col w-100">
-              <div className="row row-cols-2">
-                {/* <Link href="/editprofile"> */}
-                <a href="/profile" className="col-sm-8 fw-semibold back-button">
-                  <IoChevronBack />
-                </a>
-                {/* </Link> */}
-              </div>
+    <div id="home" className="container ">
+      <div className="col-lg-4 mx-auto col-sm">
+        <div className={style.container}>
+          <div className={style.card}>
+            <div
+              className=" text-white fs-5 d-flex justify-content-end me-3 w-100"
+              onClick={handleLogout}
+            >
+              <FiLogOut className="mt-3 mx-3" />
             </div>
-            <div className="col mt-3">
-              <div>
-                <p className="fw-bold fs-4">Edit Profile</p>
-              </div>
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  handleUpdate();
-                }}
-              >
-                <div className="mb-3">
-                  <input
-                    type="email"
-                    className=" input w-100"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    placeholder={
-                      placeholder?.email ? placeholder.email : "Email"
-                    }
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-                <div className="mb-3">
-                  <input
-                    type="text"
-                    className=" input w-100"
-                    placeholder={placeholder?.name ? placeholder.name : "Name"}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </div>
-                <div className="mb-3">
-                  <input
-                    type="phoneNumber"
-                    className=" input w-100"
-                    placeholder={
-                      placeholder?.phoneNumber
-                        ? placeholder.phoneNumber
-                        : "Phone Number"
-                    }
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                  />
-                </div>
-                <div className="mb-3">
-                  <input
-                    type="text"
-                    className=" input w-100"
-                    placeholder={placeholder?.city ? placeholder.city : "City"}
-                    onChange={(e) => setCity(e.target.value)}
-                  />
-                </div>
-                <div className="mb-3">
-                  <input
-                    type="text"
-                    className=" input w-100"
-                    placeholder={
-                      placeholder?.country ? placeholder.country : "Country"
-                    }
-                    onChange={(e) => setaAddress(e.target.value)}
-                  />
-                </div>
-                <div className="mb-3">
-                  <input
-                    type="text"
-                    className=" input w-100"
-                    placeholder={
-                      placeholder?.postCode ? placeholder.postCode : "Post Code"
-                    }
-                    onChange={(e) => setPostCode(e.target.value)}
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="btn btn-primary w-100 p-2 clr-primer "
-                >
-                  {isloading ? "Updating" : "Update"}
-                </button>
-              </form>
-              <div className="text-center p-2">
-                <a href="/forgot" className="link">
-                  Reset Password
-                </a>
-              </div>
+            <div className="d-flex justify-content-center">
+              <img
+                crossOrigin="anonymous"
+                className={`${style.profpict} mt-3 mb-2`}
+                style={{ backgroundSize: "cover" }}
+                src={profpict ? profpict : profdummy}
+                alt=""
+                width={100}
+                height={100}
+              />
             </div>
+            <h5 className="text-center">{username}</h5>
+          </div>
+        </div>
+        <div className={`${style.background} mx-3`}>
+          <div className={`row justify-content-center `}>
+            <Link href="/editprofile/id" passHref>
+              <div className="row mt-4 " style={{cursor:"pointer"}}>
+                <div className="col-2 text-center">
+                  <div className="">
+                    <BsPerson className="fs-3 text-warning" />
+                  </div>
+                </div>
+                <div className="col-8 mt-2">
+                  <p className="">Edit Profile</p>
+                </div>
+                <div className={`col-2 `}>
+                  <BsChevronRight className="mt-1" />
+                </div>
+              </div>
+            </Link>
+            <Link href="/myrecipe/id" passHref>
+              <div className="row mt-4 " style={{cursor:"pointer"}}>
+                <div className="col-2 text-center">
+                  <div className="">
+                    <FiAward className="fs-3 text-warning" />
+                  </div>
+                </div>
+                <div className="col-8 mt-2">
+                  <p className="">My Recipe</p>
+                </div>
+                <div className={`col-2 `}>
+                  <BsChevronRight className="mt-1" />
+                </div>
+              </div>
+            </Link>
+            <Link href="/savedrecipe/id" passHref>
+              <div className="row mt-4 " style={{cursor:"pointer"}}>
+                <div className="col-2 text-center">
+                  <div className="{profileStyle.icon}">
+                    <FiBookmark className="fs-3 text-warning" />
+                  </div>
+                </div>
+                <div className="col-8 mt-2">
+                  <p className="">Saved Recipe</p>
+                </div>
+                <div className={`col-2 `}>
+                  <BsChevronRight className="mt-1" />
+                </div>
+              </div>
+            </Link>
+            <Link href="/likedrecipe/id" passHref>
+              <div className="row mt-4 " style={{cursor:"pointer"}}>
+                <div className="col-2 text-center">
+                  <div className="">
+                    <AiOutlineLike className="fs-3 text-warning" />
+                  </div>
+                </div>
+                <div className="col-8 mt-2">
+                  <p className="">Liked Recipe</p>
+                </div>
+                <div className={`col-2`}>
+                  <BsChevronRight className="mt-1" />
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
       </div>
-    </>
+      <Navigation />
+    </div>
   );
-};
-
-export default EditProfile;
+}

@@ -142,3 +142,50 @@
     filter: invert(1);
   }
 }
+
+.marginbottom{
+  margin-bottom: 100px;
+  justify-content: center;
+  display: flex;
+}
+
+.pagination{
+  /* display: flex; */
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  gap: 5px;
+  text-decoration: none;
+  color:black;
+}
+
+.pagenum{
+  text-decoration: none;
+  color:black;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 5px 12px;
+  background-color: #e7e0bd;
+}
+
+.pagenum:hover{
+  background-color: #f1cb21f6;
+}
+
+.pageactive{
+  background-color: #f1cb21f6;
+}
+
+.prev{
+  text-decoration: none;
+  color:black;
+  border-radius: 5px;
+  padding: 8px 15px;
+}
+
+.prev:hover{
+  background-color: #f1cb21f6;
+
+}

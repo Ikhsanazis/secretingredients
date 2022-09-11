@@ -56,7 +56,7 @@ console.log(myRecipe)
                     <IoChevronBack className="fs-3 mt-1 bg-warning" />
                   </Link>{" "}
                 </div>
-                <h3 className="col-8 text-center">mY Recipe</h3>
+                <h3 className="col-8 text-center">My Recipe</h3>
               </div>
               {myRecipe?.map((item) => (
                 <div

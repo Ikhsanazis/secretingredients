@@ -25,6 +25,7 @@ function AddRecipe() {
     isError: false,
     errorMsg: "",
   });
+  const [message, setMessage] = React.useState("");
 
   // const id = 1;
   const handleAddRecipe = () => {
@@ -42,11 +43,12 @@ function AddRecipe() {
         data: bodyFormData,
         headers: { "Content-Type": "multipart/form-data" },
       })
-        .then((respose) => {})
+        .then((response) => {
+          setMessage(response?.data);
+        })
         .catch(({ response }) => {
-          const message = response?.data?.message;
-          setError({ isError: true, errorMsg: message });
-          console.log(error);
+          // setMessage(response?.data?.message);
+          // setError({ isError: true, errorMsg: message });
         })
         .finally(() => {
           setIsLoading(false);
@@ -54,13 +56,15 @@ function AddRecipe() {
     }, 1000);
   };
 
+  console.log(message);
+
   return (
     <div className="container">
       <div className="row">
         <div className="col-md-4 mx-auto col-xs-12">
           <h3 className="text-center">Add Your Recipe </h3>
           <div className={` mt-3 mb-5 h-100`}>
-            {error?.isError && (
+          {error?.isError ? (
               <div className={style.alert}>
                 <div
                   className="alert alert-danger alert-dismissible fade show"
@@ -68,6 +72,29 @@ function AddRecipe() {
                 >
                   <span>
                     {error?.errorMsg ?? "Something wrong with our server"}
+                  </span>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Close"
+                    onClick={() =>
+                      setError({
+                        isError: false,
+                        errorMsg: "",
+                      })
+                    }
+                  ></button>
+                </div>
+              </div>
+            ):(
+              <div className={style.alert}>
+                <div
+                  className="alert alert-primary alert-dismissible fade show"
+                  role="alert"
+                >
+                  <span>
+                    {message}
                   </span>
                   <button
                     type="button"

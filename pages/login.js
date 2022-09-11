@@ -54,7 +54,32 @@ function Login() {
               <p className="text-center">Log in into your exiting account</p>
             </div>
 
-            {error?.isError && (
+            {error?.isError ? (
+              <div className={style.alert}>
+                <div
+                  className="alert alert-danger alert-dismissible fade show"
+                  role="alert"
+                >
+                  <strong>Cannot Login</strong>
+                  <br />
+                  <span>
+                    {error?.errorMsg ?? "Something wrong with our server"}
+                  </span>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Close"
+                    onClick={() =>
+                      setError({
+                        isError: false,
+                        errorMsg: "",
+                      })
+                    }
+                  ></button>
+                </div>
+              </div>
+            ):(
               <div className={style.alert}>
                 <div
                   className="alert alert-danger alert-dismissible fade show"

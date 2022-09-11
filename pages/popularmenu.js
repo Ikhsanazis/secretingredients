@@ -1,12 +1,10 @@
-import Head from "next/head";
 import Image from "next/image";
 import React, { useEffect } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { IoChevronBack } from "react-icons/io5";
 import axios from "axios";
-
-// custom components
 import Link from "next/link";
+import Navigation from "../components/navigation";
 
 export default function Home() {
   const [popularRecipe, setPopularRecipe] = React.useState([]);

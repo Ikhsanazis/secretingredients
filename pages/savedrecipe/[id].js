@@ -28,7 +28,7 @@ export default function Home() {
     axios
       .get(`http://localhost:8000/savedrecipes/${user_id}`)
       .then((res) => {
-        setsavedRecipe(res?.data?.data);
+        setSavedRecipe(res?.data?.data);
         setLoadsaved(false);
       })
       .catch((err) => {
@@ -52,9 +52,9 @@ console.log(savedRecipe)
                     <IoChevronBack className="fs-3 mt-1 bg-warning" />
                   </Link>{" "}
                 </div>
-                <h3 className="col-8 text-center">saved Recipe</h3>
+                <h3 className="col-8 text-center">Saved Recipe</h3>
               </div>
-              {savedrecipe?.map((item) => (
+              {savedRecipe?.map((item) => (
                 <div
                   className="card"
                   style={{
