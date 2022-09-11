@@ -1,0 +1,68 @@
+.background{
+    background-color: white;
+    margin-top: -25px;
+    border-top-right-radius:25px;
+    border-top-left-radius:25px;
+    position:relative;
+    
+}
+
+.icon{
+    padding: 8px;
+    border-radius: 50%;
+}
+
+.margin{
+    margin-top: 100px;
+}
+
+.nav ::after{
+    border-bottom: 2px black solid;
+}
+
+.ingredients{
+    background-color: #FAF7ED;
+    height: 200px;
+    overflow-y: visible;
+}
+
+.video{
+    background-color: #FAF7ED;
+}
+
+.text{
+   overflow-wrap:break-word
+}
+
+.card{
+    position: absolute;
+    top: 0;
+    /* left: 0px; */
+    z-index: 3;
+    /* background-color:blue; */
+    width:100%;
+}
+
+.imagebackground{
+    position: relative;
+    z-index: 0;
+    opacity:"0.1"
+}
+
+.container{
+    /* background-color:yellow; */
+    position:relative;
+}
+
+.tabs{
+    color: black;
+}
+
+.tabs:hover{
+    color: black;
+    border-bottom: 2px solid #EEC302;
+}
+
+.icon:hover{
+    padding: 4px;
+}

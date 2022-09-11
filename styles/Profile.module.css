@@ -1,0 +1,23 @@
+.container{
+    background-color:#EEC302;
+    height: 250px;
+
+}
+
+.background{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    margin-top: -50px;
+    background-color: white;
+    height: 100vh;
+}
+
+.profpict{
+    border-radius: 50%;
+}
+/* .card{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+} */
