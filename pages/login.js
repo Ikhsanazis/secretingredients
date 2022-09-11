@@ -105,8 +105,6 @@ function Login() {
                 </div>
               </div>
             )}
-
-            {/* Login Form */}
             <div>
               <form
                 onSubmit={(e) => {
