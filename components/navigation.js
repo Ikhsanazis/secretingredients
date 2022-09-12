@@ -5,8 +5,18 @@ import { CgProfile } from "react-icons/cg";
 import { AiOutlinePlusSquare, AiOutlineHome} from "react-icons/ai";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 function Navigationbar() {
+
+  const handleClik =()=>{
+    Swal.fire({
+      icon: "Info",
+      title: "Info",
+      text: "Feature Coming Soon...",
+    });
+
+  } 
   return (
     <>
       <div
@@ -29,11 +39,11 @@ function Navigationbar() {
                     <AiOutlinePlusSquare className={`mx-4 fs-3`}/> <br />
                   </li>
                 </Link>
-                <Link href="/chat">
-                  <li className={``}>
+                {/* <Link href="/chat"> */}
+                  <li className={``} onClick={handleClik}>
                     <BsChat className={`mx-4 fs-3`}/> <br />
                   </li>
-                </Link>
+                {/* </Link> */}
                 <Link href="/profile">
                   <li className={``}>
                     <BsPerson className={`mx-4 fs-3`} /> <br />

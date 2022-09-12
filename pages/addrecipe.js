@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { decode } from "jsonwebtoken";
 import Navigation from "../components/navigation";
+import Swal from "sweetalert2";
 
 function AddRecipe() {
   const dispatch = useDispatch();
@@ -45,10 +46,20 @@ function AddRecipe() {
       })
         .then((response) => {
           setMessage(response?.data);
+          Swal.fire({
+            icon: "success",
+            title: "Sukses",
+            text: "Recipe Berhasil ditambah",
+          });
         })
         .catch(({ response }) => {
           setMessage(response?.data?.message);
           setError({ isError: true, errorMsg: message });
+          Swal.fire({
+            icon: "warning",
+            title: "failed",
+            text: "Recipe gagal ditambah",
+          });
         })
         .finally(() => {
           setIsLoading(false);
@@ -64,55 +75,6 @@ function AddRecipe() {
         <div className="col-md-4 mx-auto col-xs-12">
           <h3 className="text-center">Add Your Recipe </h3>
           <div className={` mt-3 mb-5 h-100`}>
-          {error?.isError ? (
-              <div className={style.alert}>
-                <div
-                  className="alert alert-danger alert-dismissible fade show"
-                  role="alert"
-                >
-                  <span>
-                    {error?.errorMsg ?? "Something wrong with our server"}
-                  </span>
-                  <button
-                    type="button"
-                    className="btn-close"
-                    data-bs-dismiss="alert"
-                    aria-label="Close"
-                    onClick={() =>
-                      setError({
-                        isError: false,
-                        errorMsg: "",
-                      })
-                    }
-                  ></button>
-                </div>
-              </div>
-            ):(
-              <div className={style.alert}>
-                <div
-                  className="alert alert-primary alert-dismissible fade show"
-                  role="alert"
-                >
-                  <span>
-                    {message}
-                  </span>
-                  <button
-                    type="button"
-                    className="btn-close"
-                    data-bs-dismiss="alert"
-                    aria-label="Close"
-                    onClick={() =>
-                      setError({
-                        isError: false,
-                        errorMsg: "",
-                      })
-                    }
-                  ></button>
-                </div>
-              </div>
-            )}
-
-            {/* Add Form */}
             <div>
               <form
                 onSubmit={(e) => {

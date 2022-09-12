@@ -7,40 +7,52 @@ import Image from "next/image";
 import ReactPaginate from "react-paginate";
 import { useEffect, useState } from "react";
 
-function Popularmenu() {
-  const [data, setData] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState([]);
-  const [currentItems, setCurrentItems] = useState(null);
-  const [pageCount, setPageCount] = useState(0);
-  const [itemOffset, setItemOffset] = useState(0);
+function Popularmenu(props) {
+  const [loadPopular, setLoadPopular] = React.useState(true);
+  const [popularRecipe, setPopularRecipe] = React.useState([]);
+
+  useEffect(() => {
+    getPopular();
+  }, []);
+
+  const getPopular = () => {
+    axios
+      .get("http://localhost:8000/popular")
+      .then((res) => {
+        setPopularRecipe(res?.data?.data);
+        setLoadPopular(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoadPopular(false);
+      });
+  };
+
+  const [currentItems, setCurrentItems] = React.useState([]);
+  const [pageCount, setPageCount] = React.useState(0);
+  const [itemOffset, setItemOffset] = React.useState(0);
 
   useEffect(() => {
     // Fetch items from another resources.
     const endOffset = itemOffset + itemsPerPage;
-    setCurrentItems(data.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(data.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage]);
-
-  useEffect(() => {
-    axios.get(`http://localhost:8000/popular`).then((res) => {
-      setData(res?.data?.data ?? []);
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1000);
-    });
-  }, []);
-
-  // console.log(data);
+    setCurrentItems(popularRecipe.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(popularRecipe.length / itemsPerPage));
+  }, [itemOffset, itemsPerPage, popularRecipe]);
+  // console.log(items);
   // const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
   const itemsPerPage = 4;
-
+  console.log(currentItems);
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % data.length;
+    const newOffset = (event.selected * itemsPerPage) % popularRecipe.length;
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
     );
     setItemOffset(newOffset);
   };
+
+  console.log(currentItems);
 
   return (
     <>
@@ -77,7 +89,6 @@ function Popularmenu() {
                     style={{ borderRadius: "16px" }}
                     alt="image"
                   />
-                  {console.log(data)}
                 </div>
                 <div className="col-9">
                   <div style={{ marginLeft: "5px" }}>
