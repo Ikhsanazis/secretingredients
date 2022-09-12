@@ -44,6 +44,8 @@ function Login() {
     }, 1000);
   };
 
+  
+
   return (
     <div className="container">
       <div className="row">
@@ -54,7 +56,7 @@ function Login() {
               <p className="text-center">Log in into your exiting account</p>
             </div>
 
-            {error?.isError ? (
+            {/* {error?.isError ? (
               <div className={style.alert}>
                 <div
                   className="alert alert-danger alert-dismissible fade show"
@@ -104,7 +106,7 @@ function Login() {
                   ></button>
                 </div>
               </div>
-            )}
+            )} */}
             <div>
               <form
                 onSubmit={(e) => {

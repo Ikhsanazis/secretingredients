@@ -2,38 +2,39 @@ import React from "react";
 import axios from "axios";
 import style from "../styles/Home.module.css";
 import { FiSearch } from "react-icons/fi";
+import { useRouter } from "next/router";
 
 function Search() {
-  const [data, setData] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState([]);
+  const router = useRouter();
+  const [name, setName] = React.useState("");
 
-  React.useEffect(() => {
-    axios.get(`http://localhost:8000/newrecipe`).then((res) => {
-      setData(res?.data?.data ?? []);
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 10000);
-    });
-  }, []);
-  console.log(data);
-
+  const handleSearch = () => {
+    router.push(`/search/${name}`);
+  };
   return (
     <>
-      <div className="row mx-2 justify-content-lg-center px-1">
-        <div className="col">
-          <div className={`${style.search} mb-2 mt-1`}>
-            <form>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Where you want to go?"
-                required
-              />
-              <FiSearch className={style.icon} />
-            </form>
-          </div>
+      <section className="mt-3 mb-3">
+        <div className={style.searchBar}>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSearch();
+            }}
+          >
+            {/* <span className="input-group-text test" id="basic-addon1">
+              <FiSearch />
+            </span> */}
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search Pasta, Bread, etc"
+              aria-label="Search Pasta, Bread, etc"
+              aria-describedby="basic-addon1"
+              onChange={(e) => setName(e.target.value)}
+            />
+          </form>
         </div>
-      </div>
+      </section>
     </>
   );
 }

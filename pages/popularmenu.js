@@ -3,8 +3,10 @@ import React, { useEffect } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { IoChevronBack } from "react-icons/io5";
 import axios from "axios";
-import Link from "next/link";
+// import Link from "next/link";
+import Link from "next/dist/client/link";
 import Navigation from "../components/navigation";
+import { forwardRef } from 'react';
 
 export default function Home() {
   const [popularRecipe, setPopularRecipe] = React.useState([]);
@@ -36,9 +38,9 @@ export default function Home() {
         <div>
           <section className="">
             <div className="d-flex ">
-              <Link href="/home" passHref>
+              <a href="/home">
                 <IoChevronBack className="fs-3 mt-1 " />
-              </Link>
+              </a>
               <h3 className="mx-5">Popular Recipe</h3>
             </div>
             {popularRecipe.map((item) => (
@@ -57,9 +59,6 @@ export default function Home() {
                 <div className="row">
                   <div className="col-3">
                     <Image
-                      // loader={(src)=>{
-                      //   return `http://localhost:8000/images/${item?.image}`;
-                      // }}
                       src={`http://localhost:8000/images/${item?.image}`}
                       width="80px"
                       height="80px"

@@ -14,7 +14,14 @@ function Popularmenu() {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
+    // Fetch items from another resources.
+    const endOffset = itemOffset + itemsPerPage;
+    setCurrentItems(data.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(data.length / itemsPerPage));
+  }, [itemOffset, itemsPerPage]);
+
+  useEffect(() => {
     axios.get(`http://localhost:8000/popular`).then((res) => {
       setData(res?.data?.data ?? []);
       setTimeout(() => {
@@ -22,17 +29,10 @@ function Popularmenu() {
       }, 1000);
     });
   }, []);
+
   // console.log(data);
   // const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
   const itemsPerPage = 4;
-
-  useEffect(() => {
-    // Fetch items from another resources.
-    const endOffset = itemOffset + itemsPerPage;
-    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    setCurrentItems(data.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(data.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage]);
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % data.length;
@@ -47,9 +47,9 @@ function Popularmenu() {
       <section className={`${style.popularRecipe} `}>
         <div className="d-flex justify-content-between">
           <h3>Popular Recipe</h3>
-          <Link href="/popularmenu" passHref>
+          <a href="/popularmenu">
             <p>more info</p>
-          </Link>
+          </a>
         </div>
         {currentItems?.map((item) => (
           <div
@@ -99,10 +99,10 @@ function Popularmenu() {
           // className="pagination"
           breakLabel="..."
           nextLabel="next"
+          previousLabel={"Prev"}
           onPageChange={handlePageClick}
           pageRangeDisplayed={5}
           pageCount={pageCount}
-          previousLabel={"Prev"}
           renderOnZeroPageCount={null}
           containerClassName={`${style.pagination}`}
           pageLinkClassName={`${style.pagenum}`}

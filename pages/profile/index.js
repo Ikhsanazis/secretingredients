@@ -54,19 +54,19 @@ export default function Profile() {
                 crossOrigin="anonymous"
                 className={`${style.profpict} mt-3 mb-2`}
                 style={{ backgroundSize: "cover" }}
-                src={profpict ? profpict : profdummy}
+                src={profile ? (profpict) : (profdummy)}
                 alt=""
                 width={100}
                 height={100}
               />
             </div>
-            <h5 className="text-center">{username}</h5>
+            <h5 className="text-center">{username?username:"username"}</h5>
           </div>
         </div>
         <div className={`${style.background} mx-3`}>
           <div className={`row justify-content-center `}>
             <Link href="/editprofile/id" passHref>
-              <div className="row mt-4 " style={{cursor:"pointer"}}>
+              <div className="row mt-4 " style={{ cursor: "pointer" }}>
                 <div className="col-2 text-center">
                   <div className="">
                     <BsPerson className="fs-3 text-warning" />
@@ -81,7 +81,7 @@ export default function Profile() {
               </div>
             </Link>
             <Link href="/myrecipe/id" passHref>
-              <div className="row mt-4 " style={{cursor:"pointer"}}>
+              <div className="row mt-4 " style={{ cursor: "pointer" }}>
                 <div className="col-2 text-center">
                   <div className="">
                     <FiAward className="fs-3 text-warning" />
@@ -96,7 +96,7 @@ export default function Profile() {
               </div>
             </Link>
             <Link href="/savedrecipe/id" passHref>
-              <div className="row mt-4 " style={{cursor:"pointer"}}>
+              <div className="row mt-4 " style={{ cursor: "pointer" }}>
                 <div className="col-2 text-center">
                   <div className="{profileStyle.icon}">
                     <FiBookmark className="fs-3 text-warning" />
@@ -111,7 +111,7 @@ export default function Profile() {
               </div>
             </Link>
             <Link href="/likedrecipe/id" passHref>
-              <div className="row mt-4 " style={{cursor:"pointer"}}>
+              <div className="row mt-4 " style={{ cursor: "pointer" }}>
                 <div className="col-2 text-center">
                   <div className="">
                     <AiOutlineLike className="fs-3 text-warning" />

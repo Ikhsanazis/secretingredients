@@ -4,16 +4,16 @@ import session from "redux-persist/lib/storage/session";
 // import session from "redux-persist/lib/storage";
 // import reducer
 import auth from "./auth";
-import recipce from "./recipe";
+import recipe from "./recipe";
 
 const persistConfig = {
   key: "root",
   storage: session,
-  whitelist: ["auth"],
+  whitelist: ["auth","recipe"],
 };
 
 const rootReducer = combineReducers({
-  auth,
+  auth,recipe
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

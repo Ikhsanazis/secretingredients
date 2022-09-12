@@ -47,9 +47,9 @@ console.log(savedRecipe)
             <section className="">
               <div className="d-flex">
                 <div className="col-2">
-                  <Link href="/profile" passHref>
+                  <a href="/profile">
                     <IoChevronBack className="fs-3 mt-1 bg-warning" />
-                  </Link>{" "}
+                  </a>{" "}
                 </div>
                 <h3 className="col-8 text-center">Saved Recipe</h3>
               </div>
@@ -60,13 +60,11 @@ console.log(savedRecipe)
                     borderRadius: "15px",
                     padding: "10px",
                     border: "none",
-                    "box-shadow": "2px 2px 5px 1px rgba(0,0,0,0.12)",
-                    "-webkit-box-shadow": "2px 2px 5px 1px rgba(0,0,0,0.12)",
-                    "-moz-box-shadow": "2px 2px 5px 1px rgba(0,0,0,0.12)",
+                    boxShadow: "2px 2px 5px 1px rgba(0,0,0,0.12)",
                     marginBottom: "20px",
                     cursor: "pointer",
                   }}
-                  key={item?.recipe_id}
+                  key={item?.save_id}
                 >
                   <div className="row">
                     <div className="col-3">

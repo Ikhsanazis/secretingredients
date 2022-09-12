@@ -1,1 +1,1 @@
-export const SET_MISSION_DATA = "SET_MISSON_DATA";
+export const SET_RECIPE = "SET_RECIPE";
