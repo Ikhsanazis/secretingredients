@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import { decode } from "jsonwebtoken";
 import Navigation from "../components/navigation";
 import Swal from "sweetalert2";
-import { TbTemperature } from "react-icons/tb";
 import { useEffect } from "react";
 
 function AddRecipe() {
