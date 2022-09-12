@@ -8,6 +8,7 @@ import { decode } from "jsonwebtoken";
 import Navigation from "../components/navigation";
 import Swal from "sweetalert2";
 import { TbTemperature } from "react-icons/tb";
+import { useEffect } from "react";
 
 function AddRecipe() {
   const dispatch = useDispatch();
@@ -15,7 +16,17 @@ function AddRecipe() {
   const { auth } = useSelector((state) => state);
   const decodeUser = decode(auth?.token);
   const id = decodeUser?.id;
-  console.log(id);
+
+  useEffect(() => {
+    if (auth?.token == null) {
+      Swal.fire({
+        icon: "warning",
+        title: "Login to your Accouunt",
+        text: "You Have To Lpgin First",
+      });
+      router.replace("/home");
+    }
+  });
 
   const [name, setName] = React.useState("");
   const [category, setCategory] = React.useState("");
@@ -34,23 +45,15 @@ function AddRecipe() {
     console.log([e.target.value]);
     setCategory(e.target.value);
   };
-  console.log("category",category)
+  console.log("category", category);
 
   const categoryoption = [
-    {
-      name: "Soup",
-    },
-    {
-      name: "Chicken",
-    },
-    {
-      name: "Seafood",
-    },
-    {
-      name: "Dessert",
-    },
+    { name: "Soup" },
+    { name: "Chicken" },
+    { name: "Seafood" },
+    { name: "Dessert" },
   ];
-  // const id = 1;
+
   const handleAddRecipe = () => {
     var bodyFormData = new FormData();
     bodyFormData.append("name", name);
@@ -58,35 +61,45 @@ function AddRecipe() {
     bodyFormData.append("category", category);
     bodyFormData.append("image", image);
     bodyFormData.append("video", video);
-    setIsLoading(true);
-    setTimeout(() => {
-      axios({
-        method: "post",
-        url: `http://localhost:8000/recipes/addimage/${id}`,
-        data: bodyFormData,
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-        .then((response) => {
-          setMessage(response?.data);
-          Swal.fire({
-            icon: "success",
-            title: "Sukses",
-            text: "Recipe Berhasil ditambah",
-          });
+
+    const isValid = name && ingredients && category;
+    if (!isValid) {
+      Swal.fire({
+        icon: "warning",
+        title: "failed",
+        text: "Complete Your Input",
+      });
+    } else {
+      setIsLoading(true);
+      setTimeout(() => {
+        axios({
+          method: "post",
+          url: `http://localhost:8000/recipes/addimage/${id}`,
+          data: bodyFormData,
+          headers: { "Content-Type": "multipart/form-data" },
         })
-        .catch(({ response }) => {
-          setMessage(response?.data?.message);
-          setError({ isError: true, errorMsg: message });
-          Swal.fire({
-            icon: "warning",
-            title: "failed",
-            text: "Recipe gagal ditambah",
+          .then((response) => {
+            setMessage(response?.data);
+            Swal.fire({
+              icon: "success",
+              title: "Success",
+              text: "Recipe Berhasil ditambah",
+            });
+          })
+          .catch(({ response }) => {
+            setMessage(response?.data?.message);
+            setError({ isError: true, errorMsg: message });
+            Swal.fire({
+              icon: "warning",
+              title: "failed",
+              text: "Terjadi Error",
+            });
+          })
+          .finally(() => {
+            setIsLoading(false);
           });
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-    }, 1000);
+      }, 1000);
+    }
   };
 
   console.log(message);
@@ -135,7 +148,7 @@ function AddRecipe() {
                   </div>
                 </div>
                 <div className="mb-3">
-                <label htmlFor="password" className="form-label">
+                  <label htmlFor="password" className="form-label">
                     Category
                   </label>
                   <select
