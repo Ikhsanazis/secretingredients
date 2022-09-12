@@ -47,8 +47,8 @@ function AddRecipe() {
           setMessage(response?.data);
         })
         .catch(({ response }) => {
-          // setMessage(response?.data?.message);
-          // setError({ isError: true, errorMsg: message });
+          setMessage(response?.data?.message);
+          setError({ isError: true, errorMsg: message });
         })
         .finally(() => {
           setIsLoading(false);
