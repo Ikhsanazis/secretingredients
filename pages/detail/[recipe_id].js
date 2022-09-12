@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { decode } from "jsonwebtoken";
 import Link from "next/link";
 import axios from "axios";
+import Commentlist from "../../components/comment"
 
 export default function Detail() {
   const dispatch = useDispatch();
@@ -257,6 +258,7 @@ export default function Detail() {
                           </div>
                         ))}
                       </div>
+                      <Commentlist data={dataComment}/>
                     </div>
                   </Tab.Pane>
                   <Tab.Pane eventKey="second">

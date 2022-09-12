@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { decode } from "jsonwebtoken";
 import Navigation from "../components/navigation";
 import Swal from "sweetalert2";
+import { TbTemperature } from "react-icons/tb";
 
 function AddRecipe() {
   const dispatch = useDispatch();
@@ -28,6 +29,27 @@ function AddRecipe() {
   });
   const [message, setMessage] = React.useState("");
 
+  const handleAddCategory = (e) => {
+    console.clear();
+    console.log([e.target.value]);
+    setCategory(e.target.value);
+  };
+  console.log("category",category)
+
+  const categoryoption = [
+    {
+      name: "Soup",
+    },
+    {
+      name: "Chicken",
+    },
+    {
+      name: "Seafood",
+    },
+    {
+      name: "Dessert",
+    },
+  ];
   // const id = 1;
   const handleAddRecipe = () => {
     var bodyFormData = new FormData();
@@ -112,8 +134,24 @@ function AddRecipe() {
                     />
                   </div>
                 </div>
-
                 <div className="mb-3">
+                <label htmlFor="password" className="form-label">
+                    Category
+                  </label>
+                  <select
+                    onChange={(e) => handleAddCategory(e)}
+                    class="form-control form-control-lg"
+                    aria-label="Default select "
+                    placeholder="Your ingredients"
+                  >
+                    {categoryoption.map((item, index) => (
+                      <option key={index} value={item.name}>
+                        {item.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                {/* <div className="mb-3">
                   <label className="form-label">Category</label>
                   <div className={style.formControl}>
                     <input
@@ -125,7 +163,7 @@ function AddRecipe() {
                       required
                     />
                   </div>
-                </div>
+                </div> */}
                 <div className="mb-3">
                   <label className="form-label">Image</label>
                   <div className={style.formControl}>

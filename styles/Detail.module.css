@@ -31,7 +31,9 @@
 }
 
 .text{
-   overflow-wrap:break-word
+   overflow-wrap:break-word;
+   height: 170px;
+   width: 100%;   
 }
 
 .card{
