@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 import { decode } from "jsonwebtoken";
 import Link from "next/link";
 import axios from "axios";
-import Commentlist from "../../components/comment"
+import Commentlist from "../../components/comment";
 
 export default function Detail() {
   const dispatch = useDispatch();
@@ -32,7 +32,6 @@ export default function Detail() {
   console.log(recipe_id);
   const [dataComment, setDataComment] = React.useState([]);
   const [comment, setComment] = React.useState("");
-  const [loadComment, setLoadComment] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
 
   React.useEffect(() => {
@@ -51,12 +50,10 @@ export default function Detail() {
   }, []);
 
   const getComment = () => {
-    setLoadComment(true);
     axios
       .get(`http://localhost:8000/comments/${recipe_id}`)
       .then((res) => {
         setDataComment(res?.data?.data);
-        setLoadComment(false);
       })
       .catch((err) => {
         console.log(err);
@@ -85,6 +82,7 @@ export default function Detail() {
       })
       .then((res) => {
         setIsLoading(false);
+        getComment();
       })
       .catch((err) => {
         console.log(err);
@@ -128,9 +126,7 @@ export default function Detail() {
     <div id="home" className="container ">
       {data?.map((item) => (
         <div className="col-lg-4 mx-auto col-sm" key={item?.recipe_id}>
-          <div
-            className={`${style.container} `}
-          >
+          <div className={`${style.container} `}>
             <Image
               className={style.imagebackground}
               src={`http://localhost:8000/images/${item?.image}`}
@@ -170,11 +166,10 @@ export default function Detail() {
                 defaultActiveKey="first"
                 activeKey={currentTab}
                 onSelect={(key) => setCurrentTab(key)}
-                
               >
-                <Nav variant="" className="nav" align="left" >
-                  <Nav.Item >
-                    <Nav.Link className={style.tabs} eventKey="first" >
+                <Nav variant="" className="nav" align="left">
+                  <Nav.Item>
+                    <Nav.Link className={style.tabs} eventKey="first">
                       Ingredients
                     </Nav.Link>
                   </Nav.Item>
@@ -218,47 +213,7 @@ export default function Detail() {
                           </button>
                         </div>
                       </form>
-                      <div>
-                        <h4>Comment</h4>
-                        {dataComment?.map((item) => (
-                          <div
-                            className="card"
-                            key={item?.comment_id}
-                            style={{
-                              borderRadius: "15px",
-                              padding: "10px",
-                              border: "none",
-                              boxShadow: "5px 5px 5px 5px #FAF7ED",
-                              marginBottom: "20px",
-                              cursor: "pointer",
-                            }}
-                            // key={item?.recipe_id}
-                          >
-                            <div className="row">
-                              <div className="col-3">
-                                <Image
-                                  src={`http://localhost:8000/images/${item?.image}`}
-                                  width="80px"
-                                  height="80px"
-                                  style={{ borderRadius: "50%" }}
-                                  alt="image"
-                                />
-                              </div>
-                              <div className="col-9">
-                                <div>
-                                  <h6>{item?.user_id}</h6>
-                                  <p>{item?.comment}</p>
-                                  <div
-                                    style={{ marginTop: "-10px" }}
-                                    className="d-flex gap-1 align-items-center"
-                                  ></div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                      <Commentlist data={dataComment}/>
+                      <Commentlist data={dataComment} />
                     </div>
                   </Tab.Pane>
                   <Tab.Pane eventKey="second">
