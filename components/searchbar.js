@@ -1,7 +1,5 @@
 import React from "react";
-import axios from "axios";
 import style from "../styles/Home.module.css";
-import { FiSearch } from "react-icons/fi";
 import { useRouter } from "next/router";
 
 function Search() {
@@ -16,6 +14,7 @@ function Search() {
       <section className="mt-3 mb-3">
         <div className={style.searchBar}>
           <form
+            // className={style.searchbar}
             onSubmit={(e) => {
               e.preventDefault();
               handleSearch();
@@ -26,7 +25,7 @@ function Search() {
             </span> */}
             <input
               type="text"
-              className="form-control"
+              className={`form-control  ${style.searchbar}`}
               placeholder="Search Pasta, Bread, etc"
               aria-label="Search Pasta, Bread, etc"
               aria-describedby="basic-addon1"

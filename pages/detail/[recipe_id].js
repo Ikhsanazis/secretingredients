@@ -43,7 +43,8 @@ export default function Detail() {
       }, 1000);
     });
   }, []);
-  console.log(data);
+
+  console.log("ini", data)
 
   useEffect(() => {
     getComment();
@@ -132,7 +133,7 @@ export default function Detail() {
               src={`http://localhost:8000/images/${item?.image}`}
               width="100%"
               height="75px"
-              style={{ objectFit: "cover" }}
+              // style={{ objectFit: "cover" }}
               alt="image"
               layout="responsive"
             />
@@ -221,7 +222,7 @@ export default function Detail() {
                       <div className="container">
                         <div className="row">
                           <div className="col-3 mt-2 mb-2">
-                            <button type="button" class="btn btn-warning">
+                            <button type="button" className="btn btn-warning">
                               <BsPlay className="fs-2 text-white" />
                             </button>
                           </div>

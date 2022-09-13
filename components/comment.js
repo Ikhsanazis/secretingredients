@@ -1,8 +1,8 @@
 import React from "react";
-import axios from "axios";
-import style from "../styles/Home.module.css";
-import { FiSearch } from "react-icons/fi";
-import { useRouter } from "next/router";
+// import axios from "axios";
+// import style from "../styles/Home.module.css";
+// import { FiSearch } from "react-icons/fi";
+// import { useRouter } from "next/router";
 import Image from "next/image";
 
 function Search(props) {

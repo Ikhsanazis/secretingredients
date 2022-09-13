@@ -60,6 +60,10 @@
   text-align: center;
 }
 
+.searchbar{
+  background-color:#F8F8F8;
+}
+
 .description {
   margin: 4rem 0;
   line-height: 1.5;

@@ -104,11 +104,11 @@ function AddRecipe() {
   console.log(message);
 
   return (
-    <div className="container">
+    <div className="container " style={{ backgroundColor: "#F8F8F8" }}>
       <div className="row">
-        <div className="col-md-4 mx-auto col-xs-12">
-          <h3 className="text-center">Add Your Recipe </h3>
-          <div className={` mt-3 mb-5 h-100`}>
+        <div className="col-md-4  mx-auto col-xs-12">
+          <h3 className="text-center mt-5 ">Add Your Recipe </h3>
+          <div className={` mt-5 mb-5 h-100`}>
             <div>
               <form
                 onSubmit={(e) => {
@@ -126,7 +126,7 @@ function AddRecipe() {
                       id="name"
                       placeholder="title"
                       onChange={(e) => setName(e.target.value)}
-                      required
+                      // required
                     />
                   </div>
                 </div>
@@ -142,7 +142,7 @@ function AddRecipe() {
                       id="ingredients"
                       placeholder="Your ingredients"
                       onChange={(e) => setIngredients(e.target.value)}
-                      required
+                      // required
                     />
                   </div>
                 </div>
@@ -197,7 +197,7 @@ function AddRecipe() {
                       id="name"
                       placeholder="video"
                       onChange={(e) => setVideo(e.target.files[0])}
-                      required
+                      // required
                     />
                   </div>
                 </div>
@@ -215,8 +215,8 @@ function AddRecipe() {
             </div>
           </div>
         </div>
-        <Navigation />
       </div>
+      <Navigation />
     </div>
   );
 }

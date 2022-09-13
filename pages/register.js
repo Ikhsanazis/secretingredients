@@ -40,15 +40,15 @@ function Register() {
   };
 
   return (
-    <div className="container">
+    <div className="container" style={{backgroundColor:"#F8F8F8"}}>
       <div className="row">
         {/* Side Right */}
         <div className="col-md-4 mx-auto col-xs-12">
           <div className={`${style.margin} mx-2`}>
             {/* Login Title */}
             <div className="mt-5 mb-5">
-              <h4 className="text-center">Register</h4>
-              <p className="text-center">Creat an Account </p>
+              <h4 className="text-center">Let’s Get Started !</h4>
+              <p className="text-center">Create new account to access all feautures </p>
             </div>
 
             {/* Error Alert */}

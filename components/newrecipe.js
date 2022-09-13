@@ -2,8 +2,6 @@ import React from "react";
 import axios from "axios";
 import style from "../styles/Home.module.css";
 import Image from "next/image";
-import Slider from "react-slick";
-import Link from "next/link";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
