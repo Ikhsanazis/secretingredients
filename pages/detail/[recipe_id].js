@@ -42,13 +42,13 @@ export default function Detail() {
         setIsLoading(false);
       }, 1000);
     });
-  }, []);
+  });
 
   console.log("ini", data)
 
   useEffect(() => {
     getComment();
-  }, []);
+  });
 
   const getComment = () => {
     axios

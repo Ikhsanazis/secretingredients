@@ -23,7 +23,7 @@ export default function MyRecipe() {
 
   useEffect(() => {
     getMyRecipes();
-  }, []);
+  });
 
   const getMyRecipes = () => {
     axios

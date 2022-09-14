@@ -6,24 +6,20 @@ import { AiFillStar } from "react-icons/ai";
 import { IoChevronBack } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import { decode } from "jsonwebtoken";
+import { useState } from "react";
 import axios from "axios";
-
 // custom components
 import Link from "next/link";
 
-export default function likedRecipe() {
+export default function LikedRecipe() {
   const router = useRouter();
   const dispatch = useDispatch();
   const { auth } = useSelector((state) => state);
   const decodeUser = decode(auth?.token);
   const user_id = decodeUser?.id;
 
-  const [likedRecipe, setLikedRecipe] = React.useState([]);
-  const [loadLiked, setLoadLiked] = React.useState(true);
-
-  useEffect(() => {
-    getLikedRecipes();
-  }, []);
+  const [likedRecipe, setLikedRecipe] = useState([]);
+  const [loadLiked, setLoadLiked] = useState(true);
 
   const getLikedRecipes = () => {
     axios
@@ -50,9 +46,9 @@ console.log(likedRecipe)
             <section className="">
               <div className="d-flex">
                 <div className="col-2">
-                  <a href="/profile" >
+                  <Link href="/profile" >
                     <IoChevronBack className="fs-3 mt-1 bg-warning" />
-                  </a>{" "}
+                  </Link>{" "}
                 </div>
                 <h3 className="col-8 text-center">Liked Recipe</h3>
               </div>

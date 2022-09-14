@@ -152,7 +152,7 @@ function AddRecipe() {
                   </label>
                   <select
                     onChange={(e) => handleAddCategory(e)}
-                    class="form-control form-control-lg"
+                    className="form-control form-control-lg"
                     aria-label="Default select "
                     placeholder="Your ingredients"
                   >
@@ -239,35 +239,35 @@ export default AddRecipe;
   >
     <input
       type="text"
-      class="form-control mb-3"
+      className="form-control mb-3"
       id="title"
       placeholder="Title"
     />
     <input
       type="text"
-      class="form-control mb-3"
+      className="form-control mb-3"
       id="Category"
       placeholder="Category"
     />
     <textarea
-      class="form-control mb-3"
+      className="form-control mb-3"
       id="exampleFormControlTextarea1"
       rows="6"
       placeholder="Ingredients"
     ></textarea>
-    <div class="mb-3">
-      <label for="formFile" class="form-label">
+    <div className="mb-3">
+      <label for="formFile" className="form-label">
         Upload Image
       </label>
-      <input class="form-control" type="file" id="formFile" />
+      <input className="form-control" type="file" id="formFile" />
     </div>
-    <div class="mb-3">
-      <label for="formFileMultiple" class="form-label">
+    <div className="mb-3">
+      <label for="formFileMultiple" className="form-label">
         Upload Video
       </label>
-      <input class="form-control" type="file" id="formFileMultiple" multiple />
+      <input className="form-control" type="file" id="formFileMultiple" multiple />
     </div>
-    <div class=" w-100 ">
+    <div className=" w-100 ">
       <button
         type="submit"
         className="btn btn-warning btn-lg w-100"

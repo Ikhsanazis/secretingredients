@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-// custom component
+import Image from "next/image"
 import Link from "next/link";
 
 export default function Profile() {
@@ -50,7 +50,7 @@ export default function Profile() {
               <FiLogOut className="mt-3 mx-3" />
             </div>
             <div className="d-flex justify-content-center">
-              <img
+              <Image
                 crossOrigin="anonymous"
                 className={`${style.profpict} mt-3 mb-2`}
                 style={{ backgroundSize: "cover" }}

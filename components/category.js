@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import style from "../styles/Home.module.css";
 import Link from "next/link";
-
+import Image from "next/image"
 function Category() {
   const [data, setData] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState([]);
@@ -44,11 +44,11 @@ function Category() {
               image: "/image/icon4.png",
               link: "/popular/soup",
             },
-          ].map((item, index) => (
-            <Link href={`/category/${item.name}`} passHref>
-              <div className="col-3" key={index}>
+          ].map((item) => (
+            <Link href={`/category/${item.name}`} passHref key={item.name}>
+              <div className="col-3" key={item.name}>
                 <div className="d-flex justify-content-center">
-                  <img
+                  <Image
                     src={item?.image}
                     alt="icon"
                     width="70px"

@@ -11,7 +11,7 @@ import axios from "axios";
 // custom components
 import Link from "next/link";
 
-export default function MyRecipe() {
+export default function Category() {
   const router = useRouter();
   const dispatch = useDispatch();
   const { auth } = useSelector((state) => state);
@@ -23,7 +23,7 @@ export default function MyRecipe() {
 
   useEffect(() => {
     getMyRecipes();
-  }, []);
+  });
 
   const getMyRecipes = () => {
     axios

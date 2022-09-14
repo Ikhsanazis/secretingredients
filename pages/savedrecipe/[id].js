@@ -9,7 +9,7 @@ import { decode } from "jsonwebtoken";
 import axios from "axios";
 import Link from "next/link";
 
-export default function savedRecipe() {
+export default function SavedRecipe() {
   const router = useRouter();
   const dispatch = useDispatch();
   const { auth } = useSelector((state) => state);
@@ -21,7 +21,7 @@ export default function savedRecipe() {
 
   useEffect(() => {
     getSavedRecipe();
-  }, []);
+  });
 
   const getSavedRecipe = () => {
     axios
