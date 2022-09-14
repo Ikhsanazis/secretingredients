@@ -3,6 +3,7 @@ import axios from "axios";
 import style from "../styles/Home.module.css";
 import Link from "next/link";
 import Image from "next/image"
+
 function Category() {
   const [data, setData] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState([]);
