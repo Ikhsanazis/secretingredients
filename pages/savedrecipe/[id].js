@@ -47,9 +47,9 @@ console.log(savedRecipe)
             <section className="">
               <div className="d-flex">
                 <div className="col-2">
-                  <a href="/profile">
+                  <Link href="/profile">
                     <IoChevronBack className="fs-3 mt-1 bg-warning" />
-                  </a>{" "}
+                  </Link>{" "}
                 </div>
                 <h3 className="col-8 text-center">Saved Recipe</h3>
               </div>

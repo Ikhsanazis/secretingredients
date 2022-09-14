@@ -59,9 +59,9 @@ function Popularmenu(props) {
       <section className={`${style.popularRecipe} `}>
         <div className="d-flex justify-content-between">
           <h3>Popular Recipe</h3>
-          <a href="/popularmenu">
+          <Link href="/popularmenu">
             <p>more info</p>
-          </a>
+          </Link>
         </div>
         {currentItems?.map((item) => (
           <div
