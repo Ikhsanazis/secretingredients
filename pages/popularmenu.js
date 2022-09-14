@@ -38,9 +38,9 @@ export default function Home() {
         <div>
           <section className="">
             <div className="d-flex ">
-              <a href="/home">
+              <Link href="/home">
                 <IoChevronBack className="fs-3 mt-1 " />
-              </a>
+              </Link>
               <h3 className="mx-5">Popular Recipe</h3>
             </div>
             {popularRecipe.map((item) => (
