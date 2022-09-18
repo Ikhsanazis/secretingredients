@@ -2,6 +2,7 @@ import React from "react";
 import style from "../styles/Login.module.css";
 import Link from "next/link";
 import axios from "axios";
+import Image from "next/image";
 
 function Register() {
   const [username, setUsername] = React.useState("");
@@ -27,7 +28,7 @@ function Register() {
             },
           });
 
-          router.replace("/home");
+          router.replace("/");
         })
         .catch(({ response }) => {
           const message = response?.data?.message;
@@ -40,15 +41,29 @@ function Register() {
   };
 
   return (
-    <div className="container" style={{backgroundColor:"#F8F8F8"}}>
+    <div className="container" style={{ backgroundColor: "#F8F8F8" }}>
       <div className="row">
-        {/* Side Right */}
         <div className="col-md-4 mx-auto col-xs-12">
           <div className={`${style.margin} mx-2`}>
-            {/* Login Title */}
-            <div className="mt-5 mb-5">
+            <div className="d-flex justify-content-center">
+              <div
+                className={` ${style.logo} d-flex justify-content-center align-items-center `}
+              >
+                <Image
+                  className={` `}
+                  style={{ objectFit: "cover" }}
+                  src={"/image/Group.png"}
+                  alt=""
+                  width={100}
+                  height={100}
+                />
+              </div>
+            </div>
+            <div className="mt-2 mb-4">
               <h4 className="text-center">Let’s Get Started !</h4>
-              <p className="text-center">Create new account to access all feautures </p>
+              <p className="text-center">
+                Create new account to access all feautures{" "}
+              </p>
             </div>
 
             {/* Error Alert */}
@@ -84,7 +99,7 @@ function Register() {
                 }}
               >
                 {/* Username Input */}
-                <div className="mb-3">
+                <div className="mb-2">
                   <label htmlFor="email" className="form-label">
                     Username
                   </label>
@@ -101,7 +116,7 @@ function Register() {
                 </div>
 
                 {/* Email Input */}
-                <div className="mb-3">
+                <div className="mb-2">
                   <label htmlFor="email" className="form-label">
                     E-mail
                   </label>

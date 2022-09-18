@@ -1,4 +1,11 @@
 .margin{
-    margin-top: 150px;
-    
+    margin-top: 20px;
 }
+
+.logo{
+    padding: 15px; 
+    background-color:#f1cb21f6 ;
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+ }

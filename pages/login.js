@@ -5,6 +5,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import * as Type from "../redux/auth/type";
+import Image from "next/image";
 
 function Login() {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ function Login() {
     setIsLoading(true);
     setTimeout(() => {
       axios
-        .post("http://localhost:8000/login", { email, password })
+        .post("https://sweettooth-app.herokuapp.com/login", { email, password })
         .then((respose) => {
           dispatch({
             type: Type.SET_AUTH,
@@ -32,7 +33,7 @@ function Login() {
             },
           });
 
-          router.replace("/home");
+          router.replace("/");
         })
         .catch(({ response }) => {
           const message = response?.data?.message;
@@ -44,14 +45,26 @@ function Login() {
     }, 1000);
   };
 
-  
-
   return (
     <div className="container">
       <div className="row">
         <div className="col-md-4 mx-auto col-xs-12">
           <div className={`${style.margin} mx-2`}>
-            <div className="mt-5 mb-5">
+            <div className="d-flex justify-content-center">
+              <div
+                className={` ${style.logo} d-flex justify-content-center align-items-center `}
+              >
+                <Image
+                  className={` `}
+                  style={{ objectFit: "cover" }}
+                  src={"/image/Group.png"}
+                  alt=""
+                  width={100}
+                  height={100}
+                />
+              </div>
+            </div>
+            <div className="mt-2 mb-3">
               <h4 className="text-center">Welcome</h4>
               <p className="text-center">Log in into your exiting account</p>
             </div>

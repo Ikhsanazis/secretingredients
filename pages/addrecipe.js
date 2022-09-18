@@ -23,7 +23,7 @@ function AddRecipe() {
         title: "Login to your Accouunt",
         text: "You Have To Lpgin First",
       });
-      router.replace("/home");
+      router.replace("/");
     }
   });
 
@@ -39,11 +39,6 @@ function AddRecipe() {
   });
   const [message, setMessage] = React.useState("");
 
-  const handleAddCategory = (e) => {
-    console.clear();
-    console.log([e.target.value]);
-    setCategory(e.target.value);
-  };
   console.log("category", category);
 
   const categoryoption = [
@@ -73,12 +68,12 @@ function AddRecipe() {
       setTimeout(() => {
         axios({
           method: "post",
-          url: `http://localhost:8000/recipes/addimage/${id}`,
+          url: `http://localhost:8000/recipes/add/${id}`,
           data: bodyFormData,
           headers: { "Content-Type": "multipart/form-data" },
         })
           .then((response) => {
-            setMessage(response?.data);
+            // setMessage(response?.data);
             Swal.fire({
               icon: "success",
               title: "Success",
@@ -86,7 +81,7 @@ function AddRecipe() {
             });
           })
           .catch(({ response }) => {
-            setMessage(response?.data?.message);
+            // setMessage(response?.data?.message);
             setError({ isError: true, errorMsg: message });
             Swal.fire({
               icon: "warning",
@@ -100,15 +95,18 @@ function AddRecipe() {
       }, 1000);
     }
   };
-
+  console.log(name, ingredients, category, image, video);
   console.log(message);
 
   return (
-    <div className="container " style={{ backgroundColor: "#F8F8F8" }}>
+    <div
+      className={`container`}
+      style={{ backgroundColor: "#F8F8F8", height: "100vh" }}
+    >
       <div className="row">
-        <div className="col-md-4  mx-auto col-xs-12">
-          <h3 className="text-center mt-5 ">Add Your Recipe </h3>
-          <div className={` mt-5 mb-5 h-100`}>
+        <div className="col-lg-4 col-md-4  mx-auto col-xs-12">
+          <h3 className="text-center mt-3 ">Add Your Recipe </h3>
+          <div className={` mt-4 mb-3 h-100`}>
             <div>
               <form
                 onSubmit={(e) => {
@@ -151,7 +149,7 @@ function AddRecipe() {
                     Category
                   </label>
                   <select
-                    onChange={(e) => handleAddCategory(e)}
+                    onChange={(e) => setCategory(e.target.value)}
                     className="form-control form-control-lg"
                     aria-label="Default select "
                     placeholder="Your ingredients"
@@ -163,19 +161,7 @@ function AddRecipe() {
                     ))}
                   </select>
                 </div>
-                {/* <div className="mb-3">
-                  <label className="form-label">Category</label>
-                  <div className={style.formControl}>
-                    <input
-                      type="text"
-                      className="form-control form-control-lg"
-                      id="name"
-                      placeholder="category"
-                      onChange={(e) => setCategory(e.target.value)}
-                      required
-                    />
-                  </div>
-                </div> */}
+
                 <div className="mb-3">
                   <label className="form-label">Image</label>
                   <div className={style.formControl}>
@@ -188,7 +174,7 @@ function AddRecipe() {
                     />
                   </div>
                 </div>
-                <div className="mb-3">
+                <div className="mb-4">
                   <label className="form-label">Video</label>
                   <div className={style.formControl}>
                     <input

@@ -41,6 +41,14 @@ function Navigationbar() {
         icon: "warning",
         title: "Login to Your Account",
         text: "You have to login to access this page",
+        showCancelButton: true,
+        confirmButtonColor: "blue",
+        cancelButtonColor: "red",
+        confirmButtonText: "Login",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          router.replace("/login");
+        }
       });
     } else {
       router.replace(`/profile`);
@@ -49,14 +57,14 @@ function Navigationbar() {
 
   return (
     <>
-      <div className="row justify-content-md-center justify-content-lg-center bg-light fixed-bottom">
+      <div className="row justify-content-md-center justify-content-lg-center col-lg-4 mx-auto bg-white fixed-bottom">
         <div className=" d-flex justify-content-center">
           <nav
             className="navbar  navbar-expand navbar-light"
             style={{ height: "80px" }}
           >
             <ul className="navbar-nav   nav-justified w-100">
-              <Link href="/home">
+              <Link href="/">
                 <li className={``}>
                   <AiOutlineHome className={`mx-4 fs-3`} />
                 </li>

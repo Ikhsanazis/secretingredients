@@ -8,13 +8,9 @@
     
 }
 
-.icon{
-    padding: 8px;
-    border-radius: 50%;
-}
 
 .margin{
-    margin-top: 100px;
+    margin-top: 140px;
 }
 
 .nav .after{
@@ -35,6 +31,8 @@
    overflow-wrap:break-word;
    height: 170px;
    width: 100%;   
+   /* background-color: #EEC302; */
+   overflow-y: scroll;
 }
 
 .card{

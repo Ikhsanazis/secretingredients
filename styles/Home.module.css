@@ -8,6 +8,7 @@
 
 .cardrecipe{
   width: 130px;
+  height: 200px;
   padding: 2px;
   background-color: transparent;
 }
@@ -152,6 +153,7 @@
 
 .pagenum:hover{
   background-color: #f1cb21f6;
+  color: white;
 }
 
 .pageactive{
@@ -162,11 +164,12 @@
   text-decoration: none;
   color:black;
   border-radius: 5px;
-  padding: 8px 15px;
+  padding: 5px 12px;
 }
 
 .prev:hover{
   background-color: #f1cb21f6;
+  color:white
 
 }
 

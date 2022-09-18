@@ -13,6 +13,7 @@ import { decode } from "jsonwebtoken";
 import Link from "next/link";
 import axios from "axios";
 import Commentlist from "../../components/comment";
+import Swal from "sweetalert2";
 
 export default function Detail() {
   const dispatch = useDispatch();
@@ -20,35 +21,42 @@ export default function Detail() {
   const [currentTab, setCurrentTab] = React.useState("first");
   const [data, setData] = React.useState([]);
   const router = useRouter();
+  const [dataComment, setDataComment] = React.useState([]);
+  const [comment, setComment] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState([]);
   const { auth } = useSelector((state) => state);
   const decodeUser = decode(auth?.token);
   const user_id = decodeUser?.id;
-  console.log(user_id);
+  console.log("user_id", user_id);
 
   const {
     query: { recipe_id },
   } = router;
 
   console.log(recipe_id);
-  const [dataComment, setDataComment] = React.useState([]);
-  const [comment, setComment] = React.useState("");
-  const [isLoading, setIsLoading] = React.useState(false);
 
-  React.useEffect(() => {
-    console.log(recipe_id);
-    axios.get(`http://localhost:8000/recipes/${recipe_id}`).then((res) => {
+  useEffect(() => {
+    // console.log(user_id);
+    axios.get(`http://localhost:8000/${recipe_id}`).then((res) => {
       setData(res?.data?.data ?? []);
       setTimeout(() => {
         setIsLoading(false);
       }, 1000);
     });
-  });
+  }, [recipe_id]);
 
-  console.log("ini", data)
-
+  console.log("ini", auth?.token);
+  console.log("profile", data?.image);
   useEffect(() => {
-    getComment();
-  });
+    axios
+      .get(`http://localhost:8000/comments/${recipe_id}`)
+      .then((res) => {
+        setDataComment(res?.data?.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [recipe_id]);
 
   const getComment = () => {
     axios
@@ -61,19 +69,20 @@ export default function Detail() {
       });
   };
 
-  const handleSelect = (eventKey) => {
-    setCurrentTab("second");
-  };
-  const handleClick = (e) => {
-    e.preventDefault();
-    setChange(false);
-  };
-  const handleClick2 = (e) => {
-    e.preventDefault();
-    setChange(true);
-  };
-
   const handleComment = () => {
+    //   Swal.fire({
+    //     icon: "warning",
+    //     title: "Login to Your Account",
+    //     text: "You have to login to access this page",
+    //     showCancelButton: true,
+    //     confirmButtonColor: "blue",
+    //     cancelButtonColor: "red",
+    //     confirmButtonText: "Login",
+    //   }).then((result) => {
+    //     if (result.isConfirmed) {
+    //       router.replace("/login");
+    //     }
+    //   });
     setIsLoading(true);
     axios
       .post(`http://localhost:8000/comments/add/${user_id}/${recipe_id}`, {
@@ -84,11 +93,22 @@ export default function Detail() {
       .then((res) => {
         setIsLoading(false);
         getComment();
+        Swal.fire({
+          icon: "success",
+          title: "Comment Added",
+          text: "success",
+        });
       })
       .catch((err) => {
         console.log(err);
+        Swal.fire({
+          icon: "warning",
+          title: "failed",
+          text: "You Need To Login",
+        });
       });
     getComment();
+    // }
   };
 
   const handleLike = () => {
@@ -100,6 +120,11 @@ export default function Detail() {
       })
       .then((res) => {
         setIsLoading(false);
+        Swal.fire({
+          icon: "success",
+          title: "You Liked this Recipe",
+          text: "success",
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -115,16 +140,22 @@ export default function Detail() {
       })
       .then((res) => {
         setIsLoading(false);
+        Swal.fire({
+          icon: "success",
+          title: "You Saved this Recipe",
+          text: "success",
+        });
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  console.log(dataComment);
+  console.log("test", dataComment);
+  console.log(data);
 
   return (
-    <div id="home" className="container ">
+    <div id="home" className="">
       {data?.map((item) => (
         <div className="col-lg-4 mx-auto col-sm" key={item?.recipe_id}>
           <div className={`${style.container} `}>
@@ -133,32 +164,47 @@ export default function Detail() {
               src={`http://localhost:8000/images/${item?.image}`}
               width="100%"
               height="75px"
-              // style={{ objectFit: "cover" }}
               alt="image"
               layout="responsive"
             />
             <div className={`${style.card}  w-100 `}>
-              <Link href="/profile" passHref>
-                <div className="mt-3 mx-3 text-white fs-5 ">
-                  <BsArrowLeft />
-                </div>
+              <Link href="/" passHref>
+                <button type="button" className="btn btn-warning mt-3 mx-3">
+                  <BsArrowLeft className="fs-4 text-white" />
+                </button>
               </Link>
               <div
-                className={`${style.margin} d-flex justify-content-between text-white `}
+                className={`${style.margin} d-flex justify-content-between `}
               >
-                <div className=" ">
-                  <h3 className="text-white mx-3">{item?.name}</h3>
-                  <small className="mx-3">by {item?.username}</small>
+                <div
+                  className=" "
+                  style={{
+                    justifyContent: "start",
+                    marginLeft: "15px",
+                    color: "#fff",
+                    textShadow: "1px -1px 7px rgba(0,0,0,1)",
+                  }}
+                >
+                  <h3 className=" ">{item?.name}</h3>
+                  <small className=" ">By {item?.username}</small>
                 </div>
-                <div className={`${style.like} d-flex mt-3 fs-2 mx-2`}>
-                  <BsBookmark
-                    className={`${style.icon} mx-2 bg-warning`}
+                <div className={`d-flex mt-3 fs-2 mx-2`}>
+                  <button
+                    type="button"
+                    className="btn btn-warning mt-1 "
+                    style={{ borderRadius: "50%" }}
                     onClick={handleSave}
-                  />
-                  <AiOutlineLike
-                    className={`${style.icon}  bg-warning`}
+                  >
+                    <BsBookmark className={`fs-3 text-white`} />
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-warning mt-1 mx-2"
+                    style={{ borderRadius: "50%" }}
                     onClick={handleLike}
-                  />
+                  >
+                    <AiOutlineLike className={`fs-3 text-white  `} />
+                  </button>
                 </div>
               </div>
             </div>
@@ -185,9 +231,18 @@ export default function Detail() {
                     <div className={`${style.ingredients} mt-4 mb-3 mx-4 `}>
                       <div className="mx-2 row">
                         <p className={`${style.text} mt-3 `}>
-                          {item?.ingredients}{" "}
+                          {item?.ingredients}
                         </p>
                       </div>
+                      {user_id == item?.user_id ? (
+                        <div className="text-end">
+                          <Link href={`/editrecipe/${recipe_id}`} passHref>
+                            <small style={{ cursor: "pointer" }}>
+                              Edit Recipe
+                            </small>
+                          </Link>
+                        </div>
+                      ) : null}
                       <form
                         onSubmit={(e) => {
                           e.preventDefault();
@@ -203,7 +258,7 @@ export default function Detail() {
                           onChange={(e) => setComment(e.target.value)}
                           required
                         ></textarea>
-                        <div className="d-flex justify-content-center">
+                        <div className="d-flex justify-content-center mt-2">
                           <button
                             type="submit"
                             className="btn btn-warning  mt-2 mb-3 col-6 "
@@ -218,18 +273,25 @@ export default function Detail() {
                     </div>
                   </Tab.Pane>
                   <Tab.Pane eventKey="second">
-                    <div className={`${style.video} mt-4 mx-4`}>
-                      <div className="container">
-                        <div className="row">
-                          <div className="col-3 mt-2 mb-2">
-                            <button type="button" className="btn btn-warning">
-                              <BsPlay className="fs-2 text-white" />
-                            </button>
+                    {[item?.video].map((e) => (
+                      <div className={`${style.video} mt-4 mx-4`} key={e}>
+                        <div className="container">
+                          <div className="row">
+                            <div className="col-3 mt-2 mb-2">
+                              <Link href={`/video/${e}`}>
+                                <button
+                                  type="button"
+                                  className="btn btn-warning"
+                                >
+                                  <BsPlay className="fs-2 text-white" />
+                                </button>
+                              </Link>
+                            </div>
+                            <div className="col-8 mt-2 ">Step 1</div>
                           </div>
-                          <div className="col-8 mt-2 ">Step 1</div>
                         </div>
                       </div>
-                    </div>
+                    ))}
                   </Tab.Pane>
                 </Tab.Content>
               </Tab.Container>

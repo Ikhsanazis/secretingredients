@@ -10,8 +10,9 @@ import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import Image from "next/image"
+import Image from "next/image";
 import Link from "next/link";
+import * as Type from "../../redux/auth/type";
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -19,8 +20,8 @@ export default function Profile() {
   const { auth } = useSelector((state) => state);
   const username = auth?.profile?.username;
   const profile = auth?.profile?.image;
-  const profpict = `http://localhost:8000/images/${profile}`;
   const profdummy = `/image/profil.jpg`;
+  console.log(username, profile);
 
   const handleLogout = () => {
     Swal.fire({
@@ -33,39 +34,43 @@ export default function Profile() {
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch({ type: Type.REMOVE_AUTH });
-        router.replace("/home");
+        router.replace("/");
       }
     });
   };
 
   return (
-    <div id="home" className="container ">
-      <div className="col-lg-4 mx-auto col-sm">
-        <div className={style.container}>
-          <div className={style.card}>
-            <div
-              className=" text-white fs-5 d-flex justify-content-end me-3 w-100"
-              onClick={handleLogout}
-            >
-              <FiLogOut className="mt-3 mx-3" />
-            </div>
-            <div className="d-flex justify-content-center">
-              <Image
-                crossOrigin="anonymous"
-                className={`${style.profpict} mt-3 mb-2`}
-                style={{ backgroundSize: "cover" }}
-                src={profile ? (profpict) : (profdummy)}
-                alt=""
-                width={100}
-                height={100}
-              />
-            </div>
-            <h5 className="text-center">{username?username:"username"}</h5>
+    <div id="home" className="">
+      <div className={style.container}>
+        <div className={style.card}>
+          <div
+            className=" text-white fs-5 d-flex justify-content-end me-3 w-100"
+            onClick={handleLogout}
+          >
+            <FiLogOut className="mt-3 mx-3" />
           </div>
+          <div className="d-flex justify-content-center align-items-center ">
+            <Image
+              // crossOrigin="anonymous"
+              className={`${style.profpict} `}
+              style={{ objectFit: "cover" }}
+              src={
+                profile ? `http://localhost:8000/images/${profile}` : profdummy
+              }
+              alt=""
+              width={100}
+              height={100}
+            />
+          </div>
+          <h5 className="text-center mt-2">
+            {username ? username : "username"}
+          </h5>
         </div>
+      </div>
+      <div className="">
         <div className={`${style.background} mx-3`}>
           <div className={`row justify-content-center `}>
-            <Link href="/editprofile/id" passHref>
+            <Link href="/edit" passHref>
               <div className="row mt-4 " style={{ cursor: "pointer" }}>
                 <div className="col-2 text-center">
                   <div className="">
