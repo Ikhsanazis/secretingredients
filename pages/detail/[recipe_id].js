@@ -37,19 +37,21 @@ export default function Detail() {
 
   useEffect(() => {
     // console.log(user_id);
-    axios.get(`http://localhost:8000/${recipe_id}`).then((res) => {
-      setData(res?.data?.data ?? []);
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1000);
-    });
+    axios
+      .get(`https://sweettooth-app.herokuapp.com/${recipe_id}`)
+      .then((res) => {
+        setData(res?.data?.data ?? []);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1000);
+      });
   }, [recipe_id]);
 
   console.log("ini", auth?.token);
   console.log("profile", data?.image);
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/comments/${recipe_id}`)
+      .get(`https://sweettooth-app.herokuapp.com/comments/${recipe_id}`)
       .then((res) => {
         setDataComment(res?.data?.data);
       })
@@ -60,7 +62,7 @@ export default function Detail() {
 
   const getComment = () => {
     axios
-      .get(`http://localhost:8000/comments/${recipe_id}`)
+      .get(`https://sweettooth-app.herokuapp.com/comments/${recipe_id}`)
       .then((res) => {
         setDataComment(res?.data?.data);
       })
@@ -85,11 +87,14 @@ export default function Detail() {
     //   });
     setIsLoading(true);
     axios
-      .post(`http://localhost:8000/comments/add/${user_id}/${recipe_id}`, {
-        comment,
-        user_id,
-        recipe_id,
-      })
+      .post(
+        `https://sweettooth-app.herokuapp.com/comments/add/${user_id}/${recipe_id}`,
+        {
+          comment,
+          user_id,
+          recipe_id,
+        }
+      )
       .then((res) => {
         setIsLoading(false);
         getComment();
@@ -114,10 +119,13 @@ export default function Detail() {
   const handleLike = () => {
     setIsLoading(true);
     axios
-      .post(`http://localhost:8000/like/${user_id}/${recipe_id}`, {
-        user_id,
-        recipe_id,
-      })
+      .post(
+        `https://sweettooth-app.herokuapp.com/like/${user_id}/${recipe_id}`,
+        {
+          user_id,
+          recipe_id,
+        }
+      )
       .then((res) => {
         setIsLoading(false);
         Swal.fire({
@@ -134,10 +142,13 @@ export default function Detail() {
   const handleSave = () => {
     setIsLoading(true);
     axios
-      .post(`http://localhost:8000/save/${user_id}/${recipe_id}`, {
-        user_id,
-        recipe_id,
-      })
+      .post(
+        `https://sweettooth-app.herokuapp.com/save/${user_id}/${recipe_id}`,
+        {
+          user_id,
+          recipe_id,
+        }
+      )
       .then((res) => {
         setIsLoading(false);
         Swal.fire({
@@ -161,7 +172,7 @@ export default function Detail() {
           <div className={`${style.container} `}>
             <Image
               className={style.imagebackground}
-              src={`http://localhost:8000/images/${item?.image}`}
+              src={`https://sweettooth-app.herokuapp.com/images/${item?.image}`}
               width="100%"
               height="75px"
               alt="image"

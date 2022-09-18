@@ -4,7 +4,6 @@ import Image from "next/image";
 function Comment(props) {
   const { data } = props;
   const profdummy = `/image/profil.jpg`;
-  console.log(data?.image);
   return (
     <>
       <div>
@@ -28,7 +27,7 @@ function Comment(props) {
                   crossOrigin="anonymous"
                   src={
                     item?.image
-                      ? `http://localhost:8000/images/${item?.image}`
+                      ? `https://sweettooth-app.herokuapp.com/images/${item?.image}`
                       : profdummy
                   }
                   width="80px"

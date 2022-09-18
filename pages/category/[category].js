@@ -86,7 +86,7 @@ export default function Category() {
                         <p>{item?.category}</p>
                         <div className="d-flex gap-1 align-items-center">
                           <AiFillStar className="text-warning" />
-                          <span>{item?.LIked ? item?.liked : 0} Like</span>
+                          <span>{item?.liked ? item?.liked : 0} Like</span>
                         </div>
                       </div>
                     </div>

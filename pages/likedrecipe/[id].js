@@ -26,7 +26,7 @@ export default function LikedRecipe() {
   });
   const getLikedRecipes = () => {
     axios
-      .get(`http://localhost:8000/likedrecipes/${user_id}`)
+      .get(`https://sweettooth-app.herokuapp.com/likedrecipes/${user_id}`)
       .then((res) => {
         setLikedRecipe(res?.data?.data);
         setLoadLiked(false);
@@ -73,7 +73,7 @@ export default function LikedRecipe() {
                     <div className="row">
                       <div className="col-3">
                         <Image
-                          src={`http://localhost:8000/images/${item?.image}`}
+                          src={`https://sweettooth-app.herokuapp.com/images/${item?.image}`}
                           width="80px"
                           height="80px"
                           style={{ borderRadius: "16px" }}

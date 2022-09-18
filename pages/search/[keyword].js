@@ -18,7 +18,7 @@ function Search() {
     setLoadResult(true);
     axios
       .get(
-        `http://localhost:8000/recipe/search?keyword=${keyword}&filter=${filter}`
+        `https://sweettooth-app.herokuapp.com/recipe/search?keyword=${keyword}&filter=${filter}`
       )
       .then((res) => {
         setResultSearch(res?.data?.data);
@@ -74,7 +74,7 @@ function Search() {
                           <div className="row">
                             <div className="col-3">
                               <Image
-                                src={`http://localhost:8000/images/${item?.image}`}
+                                src={`https://sweettooth-app.herokuapp.com/images/${item?.image}`}
                                 width="80px"
                                 height="80px"
                                 style={{ borderRadius: "16px" }}

@@ -68,7 +68,7 @@ function AddRecipe() {
       setTimeout(() => {
         axios({
           method: "post",
-          url: `http://localhost:8000/recipes/add/${id}`,
+          url: `https://sweettooth-app.herokuapp.com/recipes/add/${id}`,
           data: bodyFormData,
           headers: { "Content-Type": "multipart/form-data" },
         })

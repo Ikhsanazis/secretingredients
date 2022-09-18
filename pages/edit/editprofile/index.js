@@ -31,14 +31,14 @@ export default function Profile() {
   const userName = auth?.profile?.username;
   const id = auth?.profile?.id;
   const profile = auth?.profile?.image;
-  const profpict = `http://localhost:8000/images/${profile}`;
+  const profpict = `https://sweettooth-app.herokuapp.com/images/${profile}`;
   const profdummy = `/image/profil.jpg`;
 
   const handleEditProfile = () => {
     setIsLoading(true);
     setTimeout(() => {
       axios
-        .patch(`http://localhost:8000/user/edit/${id}`, {
+        .patch(`https://sweettooth-app.herokuapp.com/user/edit/${id}`, {
           username,
           email,
           password,
@@ -99,7 +99,7 @@ export default function Profile() {
 
   const handleSubmit = () => {
     axios
-      .patch(`http://localhost:8000/user/editimage/${id}`, {
+      .patch(`https://sweettooth-app.herokuapp.com/user/editimage/${id}`, {
         image,
       })
       .then((response) => {
@@ -130,7 +130,7 @@ export default function Profile() {
       <div id="home" className="container ">
         <div className="col-lg-4 mx-auto col-sm">
           <div className={style.container}>
-          <div className="h-100 ">
+            <div className="h-100 ">
               <div className="d-flex flex-column  h-100 justify-content-center align-items-center ">
                 <Image
                   // crossOrigin="anonymous"
@@ -138,7 +138,7 @@ export default function Profile() {
                   style={{ objectFit: "cover" }}
                   src={
                     profile
-                      ? `http://localhost:8000/images/${profile}`
+                      ? `https://sweettooth-app.herokuapp.com/images/${profile}`
                       : profdummy
                   }
                   alt=""

@@ -42,7 +42,7 @@ export default function Profile() {
   return (
     <div id="home" className="">
       <div className={style.container}>
-        <div className={style.card}>
+        <div className="col-lg-4 h-100 mx-auto bg-warning">
           <div
             className=" text-white fs-5 d-flex justify-content-end me-3 w-100"
             onClick={handleLogout}
@@ -55,7 +55,9 @@ export default function Profile() {
               className={`${style.profpict} `}
               style={{ objectFit: "cover" }}
               src={
-                profile ? `http://localhost:8000/images/${profile}` : profdummy
+                profile
+                  ? `https://sweettooth-app.herokuapp.com/images/${profile}`
+                  : profdummy
               }
               alt=""
               width={100}
@@ -67,7 +69,7 @@ export default function Profile() {
           </h5>
         </div>
       </div>
-      <div className="">
+      <div className="col-lg-4 mx-auto">
         <div className={`${style.background} mx-3`}>
           <div className={`row justify-content-center `}>
             <Link href="/edit" passHref>

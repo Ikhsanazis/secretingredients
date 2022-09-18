@@ -36,12 +36,14 @@ function EditRecipe() {
   console.log("ini", recipe_id);
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/${recipe_id}`).then((res) => {
-      setData(res?.data?.data ?? []);
-      setIsLoading(false);
-      // setTimeout(() => {
-      // }, 1000);
-    });
+    axios
+      .get(`https://sweettooth-app.herokuapp.com/${recipe_id}`)
+      .then((res) => {
+        setData(res?.data?.data ?? []);
+        setIsLoading(false);
+        // setTimeout(() => {
+        // }, 1000);
+      });
   }, [recipe_id]);
 
   console.log("test data", data[0]?.name);
@@ -50,7 +52,7 @@ function EditRecipe() {
     setIsLoading(true);
     setTimeout(() => {
       axios
-        .patch(`http://localhost:8000/edit/${recipe_id}`, {
+        .patch(`https://sweettooth-app.herokuapp.com/edit/${recipe_id}`, {
           name: name ? name : data[0]?.name,
           ingredients: ingredients ? ingredients : data[0]?.ingredients,
         })

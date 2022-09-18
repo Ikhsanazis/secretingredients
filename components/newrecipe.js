@@ -13,7 +13,7 @@ function NewRecipe() {
   const [isLoading, setIsLoading] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/newrecipe`).then((res) => {
+    axios.get(`https://sweettooth-app.herokuapp.com/newrecipe`).then((res) => {
       setData(res?.data?.data ?? []);
       setTimeout(() => {
         setIsLoading(false);
@@ -62,10 +62,10 @@ function NewRecipe() {
                   >
                     <Image
                       crossOrigin="anonymous"
-                      src={`http://localhost:8000/images/${item?.image}`}
+                      src={`https://sweettooth-app.herokuapp.com/images/${item?.image}`}
                       width="130px"
                       height="200px"
-                      style={{ borderRadius: "15px" }}
+                      style={{ borderRadius: "15px", backgroundSize: "cover" }}
                       alt="image"
                       className={`card-img `}
                     />

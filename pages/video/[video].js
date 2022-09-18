@@ -29,20 +29,20 @@ export default function Profile() {
   const {
     query: { video },
   } = router;
-  console.log("ini video", video );
-  const videostep=video[0]
+  console.log("ini video", video);
+  const videostep = video[0];
 
   const userName = auth?.profile?.username;
   const id = auth?.profile?.id;
   const profile = auth?.profile?.image;
-  const profpict = `http://localhost:8000/images/${profile}`;
+  const profpict = `https://sweettooth-app.herokuapp.com/images/${profile}`;
   const profdummy = `/image/profil.jpg`;
 
   const handleEditProfile = () => {
     setIsLoading(true);
     setTimeout(() => {
       axios
-        .patch(`http://localhost:8000/user/edit/${id}`, {
+        .patch(`https://sweettooth-app.herokuapp.com/user/edit/${id}`, {
           username,
           email,
           password,
@@ -110,7 +110,7 @@ export default function Profile() {
       setTimeout(() => {
         axios({
           method: "patch",
-          url: `http://localhost:8000//user/editimage/${id}`,
+          url: `https://sweettooth-app.herokuapp.com//user/editimage/${id}`,
           data: bodyFormData,
           headers: { "Content-Type": "multipart/form-data" },
         })
@@ -141,7 +141,7 @@ export default function Profile() {
 
   const handleSubmited = () => {
     axios
-      .patch(`http://localhost:8000/user/editimage/${id}`, {
+      .patch(`https://sweettooth-app.herokuapp.com/user/editimage/${id}`, {
         image,
       })
       .then((response) => {
@@ -179,7 +179,7 @@ export default function Profile() {
                   style={{ objectFit: "cover" }}
                   src={
                     profile
-                      ? `http://localhost:8000/images/${profile}`
+                      ? `https://sweettooth-app.herokuapp.com/images/${profile}`
                       : profdummy
                   }
                   alt=""

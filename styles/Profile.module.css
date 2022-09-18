@@ -3,7 +3,6 @@
 }
 
 .container{
-    background-color:#EEC302;
     height: 250px;
     width: 100%;
     /* position:relative; */
@@ -14,7 +13,7 @@
     border-top-right-radius: 15px;
     margin-top: -50px;
     background-color: white;
-    position:absolute
+    /* position:absolute */
 }
 
 .profpict{
