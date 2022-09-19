@@ -10,14 +10,14 @@ import "../styles/globals.css";
 import "bootstrap/dist/css/bootstrap.css";
 
 export default class MyApp extends App {
-  static async getInitialProps({ Component, ctx }) {
-    const pageProps = Component.getInitialProps
-      ? await Component.getInitialProps(ctx)
-      : {};
+  // static async getInitialProps({ Component, ctx }) {
+  //   const pageProps = Component.getInitialProps
+  //     ? await Component.getInitialProps(ctx)
+  //     : {};
 
-    //Anything returned here can be accessed by the client
-    return { pageProps };
-  }
+  //   //Anything returned here can be accessed by the client
+  //   return { pageProps };
+  // }
 
   render() {
     //pageProps that were returned  from 'getInitialProps' are stored in the props i.e. pageprops
