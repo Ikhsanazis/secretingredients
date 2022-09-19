@@ -85,6 +85,7 @@ export default function Home() {
                       borderRadius: "15px",
                       padding: "10px",
                       border: "none",
+                      height: "100px",
                       boxShadow: "2px 2px 5px 1px rgba(0,0,0,0.12)",
                       marginBottom: "20px",
                       cursor: "pointer",
@@ -95,41 +96,26 @@ export default function Home() {
                       <div className="row">
                         <div className="col-3">
                           <Image
-                            // crossOrigin="anonymous"
-                            src={`/${item?.image}`}
+                            src={`https://sweettooth-app.herokuapp.com/images/${item?.image}`}
                             width="80px"
                             height="80px"
                             style={{ borderRadius: "16px" }}
                             alt="image"
                           />
                         </div>
-                        <div className="col-5">
-                          <div>
+                        <div className="col-9">
+                          <div style={{ marginLeft: "5px" }}>
                             <h6>{item?.name}</h6>
                             <p>{item?.category}</p>
-                            <div
-                              style={{ marginTop: "-10px" }}
+                            <small
                               className="d-flex gap-1 align-items-center"
+                              style={{ marginTop: "-10px" }}
                             >
                               <AiFillStar className="text-warning" />
-                              <span>{item?.liked ? item?.liked : 0} Like</span>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-4 text-white">
-                          <div className={`d-flex  mt-3 fs-2 mx-2`}>
-                            <div>
-                              <BsBookmark
-                                className={`${style.icon} me-2 bg-warning`}
-                                // onClick={handleSave}
-                              />
-                            </div>
-                            <div>
-                              <AiOutlineLike
-                                className={`${style.icon} bg-warning`}
-                                // onClick={handleLike}
-                              />
-                            </div>
+                              <span>{`${
+                                item?.liked ? item?.liked : 0
+                              } Like`}</span>
+                            </small>
                           </div>
                         </div>
                       </div>
