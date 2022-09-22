@@ -28,7 +28,7 @@ function AddRecipe() {
   });
 
   const [name, setName] = React.useState("");
-  const [category, setCategory] = React.useState("");
+  const [category, setCategory] = React.useState("Soup");
   const [image, setImage] = React.useState("");
   const [video, setVideo] = React.useState("");
   const [ingredients, setIngredients] = React.useState("");

@@ -41,8 +41,6 @@ function EditRecipe() {
       .then((res) => {
         setData(res?.data?.data ?? []);
         setIsLoading(false);
-        // setTimeout(() => {
-        // }, 1000);
       });
   }, [recipe_id]);
 
@@ -58,20 +56,11 @@ function EditRecipe() {
         })
         .then((response) => {
           setMessage(response?.data);
-          // Swal.fire({
-          //   icon: "success",
-          //   title: "Success",
-          //   text: "Recipe Berhasil diedit",
-          // });
         })
         .catch(({ response }) => {
           setMessage(response?.data?.message);
           setError({ isError: true, errorMsg: message });
-          // Swal.fire({
-          //   icon: "warning",
-          //   title: "failed",
-          //   text: "Terjadi Error",
-          // });
+
         })
         .finally(() => {
           setIsLoading(false);

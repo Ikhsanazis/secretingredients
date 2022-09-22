@@ -36,7 +36,6 @@ export default function Detail() {
   console.log(recipe_id);
 
   useEffect(() => {
-    // console.log(user_id);
     axios
       .get(`https://sweettooth-app.herokuapp.com/${recipe_id}`)
       .then((res) => {
@@ -47,8 +46,7 @@ export default function Detail() {
       });
   }, [recipe_id]);
 
-  console.log("ini", auth?.token);
-  console.log("profile", data?.image);
+
   useEffect(() => {
     axios
       .get(`https://sweettooth-app.herokuapp.com/comments/${recipe_id}`)
@@ -72,19 +70,6 @@ export default function Detail() {
   };
 
   const handleComment = () => {
-    //   Swal.fire({
-    //     icon: "warning",
-    //     title: "Login to Your Account",
-    //     text: "You have to login to access this page",
-    //     showCancelButton: true,
-    //     confirmButtonColor: "blue",
-    //     cancelButtonColor: "red",
-    //     confirmButtonText: "Login",
-    //   }).then((result) => {
-    //     if (result.isConfirmed) {
-    //       router.replace("/login");
-    //     }
-    //   });
     setIsLoading(true);
     axios
       .post(
@@ -113,7 +98,6 @@ export default function Detail() {
         });
       });
     getComment();
-    // }
   };
 
   const handleLike = () => {
