@@ -48,7 +48,6 @@ cd secretingredients
 ```
 npm install
 ```
-
 ## Contact
 
 Email : mikhsanazisp@gmail.com
@@ -57,3 +56,21 @@ Email : mikhsanazisp@gmail.com
 Distributed under the [MIT](/LICENSE) License.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+
+## Lampiran
+
+<p align="center" display=flex>
+
+<table>
+<tr>
+<td><image src="https://i.ibb.co/x1yZ7pM/mobile-1.png" alt="login" width=250></td>
+<td><image src="https://i.ibb.co/n31csJ5/mobile-2.png" alt="register" width=250/></td>
+<td><image src="https://i.ibb.co/qBcyk63/mobile-5.png" alt="home" width=250/></td>
+<td><image src="https://i.ibb.co/NZtbTHD/mobile-8.png" alt="detail" width=250/></td>
+</tr>
+<tr>
+<td><image src="https://i.ibb.co/2kG1R8j/mobile-3.png" alt="profile" width=250></td>
+<td><image src="https://i.ibb.co/t3kY074/mobile-7.png" alt="search" width=250/></td>
+</tr>
+</table>
