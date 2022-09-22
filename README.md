@@ -55,9 +55,6 @@ Email : mikhsanazisp@gmail.com
 ## License
 Distributed under the [MIT](/LICENSE) License.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
 ## Lampiran
 
 <p align="center" display=flex>
@@ -74,3 +71,5 @@ Distributed under the [MIT](/LICENSE) License.
 <td><image src="https://i.ibb.co/t3kY074/mobile-7.png" alt="search" width=250/></td>
 </tr>
 </table>
+
+<p align="right">(<a href="#top">back to top</a>)</p>
