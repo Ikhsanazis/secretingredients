@@ -41,7 +41,10 @@ function Register() {
   };
 
   return (
-    <div className="container" style={{ backgroundColor: "#F8F8F8" }}>
+    <div
+      className="container"
+      style={{ backgroundColor: "#F8F8F8", height: "100vh" }}
+    >
       <div className="row">
         <div className="col-md-4 mx-auto col-xs-12">
           <div className={`${style.margin} mx-2`}>
