@@ -81,11 +81,13 @@ Distributed under the [MIT](/LICENSE) License.
 <td><image src="https://i.ibb.co/NZtbTHD/mobile-8.png" alt="detail" width=250/></td>
 </tr>
 <tr>
-<td><h4 >Profile</h4></td>
+<td><h4 >Add Recipe</h4></td>
 <td><h4 >Search</h4></td>
+<td><h4 >Profile</h4></td>
 <td><h4 >Edit Profile</h4></td>
 </tr>
 <tr>
+<td><image src="https://i.ibb.co/z74tWDr/mobile-12.png" alt="addrecipe" width=250/></td>
 <td><image src="https://i.ibb.co/t3kY074/mobile-7.png" alt="search" width=250/></td>
 <td><image src="https://i.ibb.co/2kG1R8j/mobile-3.png" alt="profile" width=250></td>
 <td><image src="https://i.ibb.co/yXb4Z8w/mobile-11.png" alt="edit profile" width=250></td>
