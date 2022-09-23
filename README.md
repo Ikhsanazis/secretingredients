@@ -76,7 +76,7 @@ Distributed under the [MIT](/LICENSE) License.
 </tr>
 <tr>
 <td><image src="https://i.ibb.co/x1yZ7pM/mobile-1.png" alt="login" width=250></td>
-<td><image src="https://i.ibb.co/n31csJ5/mobile-2.png" alt="register" width=250/></td>
+<td><image src="https://i.ibb.co/Gcp4czz/mobile-13.png" alt="register" width=250/></td>
 <td><image src="https://i.ibb.co/qBcyk63/mobile-5.png" alt="home" width=250/></td>
 <td><image src="https://i.ibb.co/NZtbTHD/mobile-8.png" alt="detail" width=250/></td>
 </tr>
