@@ -21,6 +21,8 @@ function NewRecipe() {
     });
   }, []);
 
+  console.log(data)
+
   return (
     <>
       <section className={style.newRecipe}>
