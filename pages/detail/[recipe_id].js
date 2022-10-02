@@ -156,7 +156,7 @@ export default function Detail() {
           <div className={`${style.container} `}>
             <Image
               className={style.imagebackground}
-              src={`https://sweettooth-app.herokuapp.com/images/${item?.image}`}
+              src={`${item?.image}`}
               width="100%"
               height="75px"
               alt="image"

@@ -62,7 +62,7 @@ function NewRecipe() {
                   >
                     <Image
                       crossOrigin="anonymous"
-                      src={`https://sweettooth-app.herokuapp.com/images/${item?.image}`}
+                      src={`${item?.image}`}
                       width="130px"
                       height="200px"
                       style={{ borderRadius: "15px", backgroundSize: "cover" }}

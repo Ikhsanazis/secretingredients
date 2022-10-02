@@ -105,7 +105,7 @@ function Popularmenu() {
                   <div className="row">
                     <div className="col-3">
                       <Image
-                        src={`https://sweettooth-app.herokuapp.com/images/${item?.image}`}
+                        src={`${item?.image}`}
                         width="80px"
                         height="80px"
                         style={{ borderRadius: "16px" }}
@@ -132,13 +132,15 @@ function Popularmenu() {
           </>
         )}
       </section>
-      <section className={style.marginbottom}>
+      <section className={`${style.marginbottom}  `}>
         <ReactPaginate
-          breakLabel="..."
+          breakLabel="....."
           nextLabel="Next"
           previousLabel={"Prev"}
           onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
+          marginPagesDisplayed={1}
+          // forcePage={1}
+          pageRangeDisplayed={3}
           pageCount={pageCount}
           renderOnZeroPageCount={null}
           containerClassName={`${style.pagination}`}
