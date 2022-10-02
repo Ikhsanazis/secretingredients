@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 import * as Type from "../../../redux/auth/type";
 import { useState } from "react";
 import Image from "next/image";
-import AddCard from "../../../components/AddCard";
 import axios from "axios";
 import { Modal, Form, Button } from "react-bootstrap";
 
